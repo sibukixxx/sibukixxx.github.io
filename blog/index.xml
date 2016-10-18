@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog-rss on Arthur Dent</title>
+    <link>https://you.github.io/blog/index.xml</link>
+    <description>Recent content in Blog-rss on Arthur Dent</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 19 Oct 2016 00:56:02 +0900</lastBuildDate>
+    <atom:link href="https://you.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2016 10 18</title>
+      <link>https://you.github.io/blog/2016-10-18/</link>
+      <pubDate>Wed, 19 Oct 2016 00:56:02 +0900</pubDate>
+      
+      <guid>https://you.github.io/blog/2016-10-18/</guid>
+      <description>
+
+&lt;h1 id=&#34;try-to-self-documented-makefile&#34;&gt;Try to Self-Documented Makefile&lt;/h1&gt;
+
+&lt;p&gt;みんなのGo 1章にあるMakefileを試した.&lt;br /&gt;
+makeはいつかやろうとして後回しにしていたのでようやく取り組めてよかった.&lt;/p&gt;
+
+&lt;p&gt;GitHubを見る限りGoのライブラリでMakefileを利用する人は結構いるようなので&lt;br /&gt;
+適宜参考にさせてもらいつつ自分の手に馴染ませていきたい.&lt;/p&gt;
+
+&lt;h2 id=&#34;参考url&#34;&gt;参考URL&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/kasei-san/items/ad25df63260e86c5cc71&#34;&gt;Makefile ことはじめ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://postd.cc/auto-documented-makefile/&#34;&gt;Makefileを自己文書化する&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.songmu.jp/riji/entry/2016-06-13-make2help.html&#34;&gt;Makefileを自己文書化する &lt;code&gt;make2help&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://postd.cc/go-best-practices-2016/#repository-structure&#34;&gt;6年間におけるGoのベストプラクティス: リポジトリ構造&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
