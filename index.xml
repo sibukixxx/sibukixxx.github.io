@@ -6,8 +6,62 @@
     <description>Recent content on blog.sibukixxx.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Wed, 19 Oct 2016 00:56:02 +0900</lastBuildDate>
+    <lastBuildDate>Wed, 19 Oct 2016 15:51:16 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>【python】Anaconda導入メモ</title>
+      <link>https://sibukixxx.github.io/blog/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2/</link>
+      <pubDate>Wed, 19 Oct 2016 15:51:16 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2/</guid>
+      <description>&lt;p&gt;統計関連に携わることになり、基本的な統計・数学・機械学習を学んでいく必要が出てきた。
+検証環境を手軽に準備したいため、主要ライブラリをオールインワンでインストールできるといわれているAnacondaを導入してみる。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;動作環境&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table frame=&#34;void&#34; rules=&#34;none&#34; style=&#34;width: 19em;&#34;&gt;
+&lt;tbody valign=&#34;top&#34;&gt;
+&lt;tr&gt;&lt;th&gt;OS:&lt;/th&gt;&lt;td&gt;CentOS6.5&lt;/td&gt;&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;ul&gt;
+&lt;li&gt;導入コマンド&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+echo &#39;export PYENV_ROOT=&amp;quot;$HOME/.pyenv&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bashrc
+echo &#39;export PATH=&amp;quot;$PYENV_ROOT/bin:$PATH&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bashrc
+echo &#39;eval &amp;quot;$(pyenv init -)&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bashrc
+source ~/.bashrc
+
+pyenv install -l | grep ana
+pyenv install anaconda3-2.5.0
+pyenv rehash
+pyenv global anaconda3-2.5.0
+echo &#39;export PATH=&amp;quot;$PYENV_ROOT/versions/anaconda3-2.5.0/bin/:$PATH&amp;quot;&#39; &amp;gt;&amp;gt; ~/.bashrc
+source ~/.bashrc
+conda update conda
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;副作用があるらしいので、Anaconda専用環境として利用していこうと思う。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;動作確認&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ python -V
+Python 3.5.2 :: Anaconda 4.1.1 (64-bit)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://qiita.com/y__sama/items/5b62d31cb7e6ed50f02c&#34;&gt;データサイエンティストを目指す人のpython環境構築 2016&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>2016 10 18</title>

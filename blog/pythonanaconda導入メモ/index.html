@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="Asia/Tokyo">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="peace of mind">
+
+<base href="https://sibukixxx.github.io/">
+<title>
+
+
+     【python】Anaconda導入メモ 
+
+</title>
+<link rel="canonical" href="https://sibukixxx.github.io/blog/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/sibukixxx.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/reset.css">
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/main.css">
+
+
+    <link rel="stylesheet" href="https://sibukixxx.github.io/css/override.css">
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://sibukixxx.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="ja">
+
+<section class="header"> 
+    <div class="container">
+        <div class="content">
+            <a href="https://sibukixxx.github.io/"><div class="name">blog.sibukixxx.net</div></a>
+            <nav>
+                <ul>
+                    <a href="https://sibukixxx.github.io/blog/"><li>Blog</li></a>
+                    <a href="https://sibukixxx.github.io/about/"><li>About</li></a>
+                    <a href="https://sibukixxx.github.io/code/"><li>Code</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/sibukixxx" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/sibukixxx" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://sibukixxx.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    【python】Anaconda導入メモ
+
+</div>
+
+                    <div class="initials"><a href="https://sibukixxx.github.io/">ad</a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tsu Oct 109, 19106 15:51:16 JST">Oct 109, 19106</div>
+                    <div class="reading-time"><div class="middot"></div>1 minute read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                <p>統計関連に携わることになり、基本的な統計・数学・機械学習を学んでいく必要が出てきた。
+検証環境を手軽に準備したいため、主要ライブラリをオールインワンでインストールできるといわれているAnacondaを導入してみる。</p>
+
+<ul>
+<li>動作環境</li>
+</ul>
+
+<table frame="void" rules="none" style="width: 19em;">
+<tbody valign="top">
+<tr><th>OS:</th><td>CentOS6.5</td></tr>
+</tbody>
+</table>
+
+<ul>
+<li>導入コマンド</li>
+</ul>
+
+<pre><code>git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+echo 'export PYENV_ROOT=&quot;$HOME/.pyenv&quot;' &gt;&gt; ~/.bashrc
+echo 'export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;' &gt;&gt; ~/.bashrc
+echo 'eval &quot;$(pyenv init -)&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+
+pyenv install -l | grep ana
+pyenv install anaconda3-2.5.0
+pyenv rehash
+pyenv global anaconda3-2.5.0
+echo 'export PATH=&quot;$PYENV_ROOT/versions/anaconda3-2.5.0/bin/:$PATH&quot;' &gt;&gt; ~/.bashrc
+source ~/.bashrc
+conda update conda
+</code></pre>
+
+<p>副作用があるらしいので、Anaconda専用環境として利用していこうと思う。</p>
+
+<ul>
+<li>動作確認</li>
+</ul>
+
+<pre><code>$ python -V
+Python 3.5.2 :: Anaconda 4.1.1 (64-bit)
+</code></pre>
+
+<ul>
+<li><a href="http://qiita.com/y__sama/items/5b62d31cb7e6ed50f02c">データサイエンティストを目指す人のpython環境構築 2016</a></li>
+</ul>
+
+                <br>
+                <p><a href="https://sibukixxx.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'cocoaexamplesite';
+    var disqus_identifier = 'https:\/\/sibukixxx.github.io\/blog\/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2\/';
+    var disqus_title = '【python】Anaconda導入メモ';
+    var disqus_url = 'https:\/\/sibukixxx.github.io\/blog\/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("XYZ");
+    pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
