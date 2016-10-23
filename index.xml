@@ -6,8 +6,40 @@
     <description>Recent content on blog.sibukixxx.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Wed, 19 Oct 2016 15:51:16 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 23 Oct 2016 21:45:57 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2016年10月23日</title>
+      <link>https://sibukixxx.github.io/blog/2016%E5%B9%B410%E6%9C%8823%E6%97%A5/</link>
+      <pubDate>Sun, 23 Oct 2016 21:45:57 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/2016%E5%B9%B410%E6%9C%8823%E6%97%A5/</guid>
+      <description>
+
+&lt;h1 id=&#34;gt集計とは&#34;&gt;GT集計とは？&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;「GT集計」とは、集計結果の最初に出てくる表で、回収データ全体の各回答比率が集計され、表示されている。グランドトータル（Grand Total）の略で単純集計ともいう。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.macromill.com/landing/words/a054.html&#34;&gt;マクロミル:GT集計とは&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;単純集計は集計結果の全体像を把握するとともに、データ本体が使えるデータかどうか確認・判断するために利用する。可能であれば、経年・類似データと比較できるとよい。&lt;/p&gt;
+
+&lt;p&gt;集計データの取り扱いはあくまでも概要を把握することを目的とする。目的を見失わずに効率を求めることを優先していく。&lt;/p&gt;
+
+&lt;h3 id=&#34;類似ワード&#34;&gt;類似ワード&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;クロス集計&lt;/li&gt;
+&lt;li&gt;星取表&lt;/li&gt;
+&lt;li&gt;分類項目・集計項目&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>【python】Anaconda導入メモ</title>
