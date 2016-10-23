@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Blog-rss on blog.sibukixxx.net</title>
+    <title>Blog-rss on sibukixxx.github.io</title>
     <link>https://sibukixxx.github.io/blog/index.xml</link>
-    <description>Recent content in Blog-rss on blog.sibukixxx.net</description>
+    <description>Recent content in Blog-rss on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
     <lastBuildDate>Sun, 23 Oct 2016 21:45:57 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>2016年10月23日</title>
-      <link>https://sibukixxx.github.io/blog/2016%E5%B9%B410%E6%9C%8823%E6%97%A5/</link>
+      <title>What is the Grand Totals Aggregations</title>
+      <link>https://sibukixxx.github.io/blog/what-is-the-grand-totals-aggregations/</link>
       <pubDate>Sun, 23 Oct 2016 21:45:57 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/2016%E5%B9%B410%E6%9C%8823%E6%97%A5/</guid>
+      <guid>https://sibukixxx.github.io/blog/what-is-the-grand-totals-aggregations/</guid>
       <description>
 
 &lt;h1 id=&#34;gt集計とは&#34;&gt;GT集計とは？&lt;/h1&gt;
@@ -42,11 +42,11 @@
     </item>
     
     <item>
-      <title>【python】Anaconda導入メモ</title>
-      <link>https://sibukixxx.github.io/blog/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2/</link>
+      <title>Python Anaconda install</title>
+      <link>https://sibukixxx.github.io/blog/python-anaconda-install/</link>
       <pubDate>Wed, 19 Oct 2016 15:51:16 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/pythonanaconda%E5%B0%8E%E5%85%A5%E3%83%A1%E3%83%A2/</guid>
+      <guid>https://sibukixxx.github.io/blog/python-anaconda-install/</guid>
       <description>&lt;p&gt;統計関連に携わることになり、基本的な統計・数学・機械学習を学んでいく必要が出てきた。
 検証環境を手軽に準備したいため、主要ライブラリをオールインワンでインストールできるといわれているAnacondaを導入してみる。&lt;/p&gt;
 
@@ -96,17 +96,22 @@ Python 3.5.2 :: Anaconda 4.1.1 (64-bit)
     </item>
     
     <item>
-      <title>2016 10 18</title>
-      <link>https://sibukixxx.github.io/blog/2016-10-18/</link>
+      <title>Try to Self-Documented Makefile</title>
+      <link>https://sibukixxx.github.io/blog/try-to-self-documented-makefile/</link>
       <pubDate>Wed, 19 Oct 2016 00:56:02 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/2016-10-18/</guid>
+      <guid>https://sibukixxx.github.io/blog/try-to-self-documented-makefile/</guid>
       <description>
-
-&lt;h1 id=&#34;try-to-self-documented-makefile&#34;&gt;Try to Self-Documented Makefile&lt;/h1&gt;
 
 &lt;p&gt;みんなのGo 1章にあるMakefileを試した.&lt;br /&gt;
 makeはいつかやろうとして後回しにしていたのでようやく取り組めてよかった.&lt;/p&gt;
+
+&lt;p&gt;主な注意点は次の通り.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Makefileはタブインデントとする(indentation to tabs and not spaces)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DEFAULT_GOAL&lt;/code&gt; はデフォルトのターゲットを指定できる&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;GitHubを見る限りGoのライブラリでMakefileを利用する人は結構いるようなので&lt;br /&gt;
 適宜参考にさせてもらいつつ自分の手に馴染ませていきたい.&lt;/p&gt;

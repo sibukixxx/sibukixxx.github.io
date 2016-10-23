@@ -3,10 +3,10 @@
 @import url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:500);
 .dark {
-  color: #333333 !important;
+  color: #333 !important;
 }
 .light {
-  color: #666666 !important;
+  color: #666 !important;
 }
 .accent {
   color: #428bca !important;
@@ -61,7 +61,7 @@ body {
   min-height: 100%;
   font-weight: 400;
   font-family: 'Open Sans', 'Helvetica Neue', 'Arial', sans-serif;
-  color: #111111;
+  color: #111;
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
 }
@@ -184,18 +184,16 @@ section.header .name {
   font-size: 18px;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  text-transform: uppercase;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  color: #333333;
-  color: #555555;
+  color: #333;
+  color: #555;
 }
 section.header nav {
   font-size: 14px;
   margin-bottom: 16px;
-  text-transform: uppercase;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
 }
 section.header nav ul {
@@ -218,7 +216,7 @@ section.header nav ul a:last-child {
   margin-right: 0;
 }
 section.header nav ul li {
-  color: #555555;
+  color: #555;
   font-weight: 500;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -226,7 +224,7 @@ section.header nav ul li {
   -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
 }
 section.header nav ul li:hover {
-  color: #111111;
+  color: #111;
 }
 @media (min-width: 600px) {
   section.header {
@@ -245,7 +243,7 @@ section.header nav ul li:hover {
     align-items: flex-start;
   }
   section.header .name {
-    color: #333333;
+    color: #333;
   }
   section.header nav {
     font-size: 14px;
@@ -255,10 +253,10 @@ section.header nav ul li:hover {
     text-align: left;
   }
   section.header nav ul li {
-    color: #666666;
+    color: #666;
   }
   section.header nav ul li:hover {
-    color: #333333;
+    color: #333;
   }
 }
 section.icons {
@@ -280,7 +278,7 @@ section.icons .content {
 section.icons .content a {
   margin-left: 6px;
   margin-right: 6px;
-  color: #555555;
+  color: #555;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
@@ -293,7 +291,7 @@ section.icons .content a:last-child {
   margin-right: 0;
 }
 section.icons .content a:hover {
-  color: #111111;
+  color: #111;
 }
 section.icons .content a .icon {
   font-size: 20px;
@@ -314,10 +312,10 @@ section.icons .content a .icon.larger {
   section.icons .content a {
     margin-left: 3px;
     margin-right: 3px;
-    color: #666666;
+    color: #666;
   }
   section.icons .content a:hover {
-    color: #333333;
+    color: #333;
   }
   section.icons .content a .icon {
     font-size: 18px;
@@ -337,7 +335,7 @@ section.main .container {
   justify-content: flex-start;
 }
 section.main .content {
-  color: #111111;
+  color: #111;
   font-size: 16px;
 }
 section.main .content .title-container {
@@ -356,34 +354,32 @@ section.main .content .title-container .initials {
   font-size: 18px;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  text-transform: uppercase;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  color: #333333;
-  color: #666666;
+  color: #333;
+  color: #666;
 }
 section.main .content .title-container .initials a {
-  color: #666666;
+  color: #666;
   -webkit-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -moz-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -ms-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
   -o-transition: color 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
 }
 section.main .content .title-container .initials a:hover {
-  color: #333333;
+  color: #333;
 }
 section.main .content .page-heading {
   font-size: 18px;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  text-transform: uppercase;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  color: #333333;
+  color: #333;
   margin-bottom: 16px;
 }
 section.main .content .front-matter .page-heading {
@@ -391,7 +387,7 @@ section.main .content .front-matter .page-heading {
 }
 section.main .content .front-matter .meta {
   font-size: 14px;
-  color: #666666;
+  color: #666;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
@@ -489,7 +485,7 @@ section.main .container .content .post-item {
 }
 section.main .container .content .post-item .meta {
   font-size: 14px;
-  color: #666666;
+  color: #666;
   display: none;
   min-width: 100px;
   text-align: right;
@@ -561,7 +557,7 @@ img.profile {
   }
 }
 .page-heading a {
-  color: #333333;
+  color: #333;
 }
 section.main .content .markdown h1,
 section.main .content .markdown h2,
@@ -572,12 +568,11 @@ section.main .content .markdown h6 {
   font-size: 18px;
   font-family: 'Raleway', 'Helvetica Neue', 'Arial', sans-serif;
   letter-spacing: -0.005rem;
-  text-transform: uppercase;
   font-weight: 700;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  color: #333333;
+  color: #333;
   text-transform: none;
   margin-top: 1.75rem;
 }
