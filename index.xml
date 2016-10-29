@@ -6,8 +6,71 @@
     <description>Recent content on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Sun, 23 Oct 2016 23:17:59 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 29 Oct 2016 17:27:03 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Thinking of markup</title>
+      <link>https://sibukixxx.github.io/blog/thinking-of-markup/</link>
+      <pubDate>Sat, 29 Oct 2016 17:27:03 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/thinking-of-markup/</guid>
+      <description>
+
+&lt;p&gt;マークアップをする心構えとして、HTML5にのっとった要素を積極的に利用していく。役割をHTML上で明示してあれば可用性が高まる。role属性やWAI-ARIA が当てはまる。逆にボタンを実装するような場合、単にdiv + aタグで囲みCSSでなんでもこなそうとしないほうがよい。&lt;/p&gt;
+
+&lt;h3 id=&#34;role属性&#34;&gt;role属性&lt;/h3&gt;
+
+&lt;p&gt;role 属性の一覧は下記URLで確認することができる。
+- &lt;a href=&#34;https://www.w3.org/TR/wai-aria/roles#role_definitions_header&#34;&gt;5.4. Definition of Roles(全 role 一覧) - W3C / ARIA&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;すべての要素でrole属性を気にする必要は無い模様
+&amp;gt; HTML5 以降の HTML に定義されるいくつかの要素は、暗黙的な role 属性が定義されています。 また、暗黙的な role 属性を持つ要素に対しては、それと同じ role 属性は指定するべきではない、とされています。 したがって、あらゆる要素に role を指定する作業コストは必要になりません。
+- &lt;a href=&#34;http://xn--lcki7of.jp/502/&#34;&gt;role 属性を正しく設定してアクセシビリティを高める&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;wai-aria-とは&#34;&gt;WAI-ARIA とは&lt;/h3&gt;
+
+&lt;p&gt;WAI-ARIA は Webアプリケーションにおいてアクセシビリティを高めるために策定された仕様。HTMLマークアップしていく上でより詳細な役割を表現することができる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;- aria-labelledby 属性
+    - 要素とラベルを関連付ける属性
+- aria-pressed 属性
+    - トグルボタンを表現するための属性
+- aria-checked 属性
+    - チェック状態を示すためのWAI-ARIAの属性
+- aria-hidden 属性
+    - ユーザーエージェントに認識させたくない要素に指定するためのWAI-ARIA属性
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;使い方のサンプル&#34;&gt;使い方のサンプル&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;button + span + iconフォント&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;button type=&amp;quot;button&amp;quot; aria-pressed=&amp;quot;true&amp;quot;&amp;gt;
+	&amp;lt;span class=“icon” aria-label=“メイン”&amp;gt;&amp;lt;/span&amp;gt;
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;button + svg&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;button type=&amp;quot;button&amp;quot;  aria-pressed=&amp;quot;true&amp;quot;&amp;gt;
+&amp;lt;svg roll=&amp;quot;img&amp;quot; aria-labelledby=“memo”&amp;gt;
+    &amp;lt;title id=“memo”&amp;gt;メモ&amp;lt;/title&amp;gt;
+    &amp;lt;use xlink:href=&amp;quot;icon-memo.svg&amp;quot;&amp;gt;
+&amp;lt;/svg&amp;gt;
+&amp;lt;/button&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;参考url&#34;&gt;参考URL&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.w3.org/TR/wai-aria/states_and_properties#aria-checked&#34;&gt;aria-checked 属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.webcreativepark.net/html/wai-aria/aria-hidden/&#34;&gt;aria-hidden 属性&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>code</title>
@@ -144,6 +207,53 @@ makeはいつかやろうとして後回しにしていたのでようやく取�
 &lt;li&gt;&lt;a href=&#34;http://www.songmu.jp/riji/entry/2016-06-13-make2help.html&#34;&gt;Makefileを自己文書化する &lt;code&gt;make2help&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://postd.cc/go-best-practices-2016/#repository-structure&#34;&gt;6年間におけるGoのベストプラクティス: リポジトリ構造&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://sibukixxx.github.io/sample/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://sibukixxx.github.io/sample/</guid>
+      <description>&lt;div id=&#34;preamble&#34;&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;paragraph&#34;&gt;
+&lt;p&gt;An introduction to &lt;a href=&#34;http://asciidoc.org&#34;&gt;AsciiDoc&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;sect1&#34;&gt;
+&lt;h2 id=&#34;_first_section&#34;&gt;First Section&lt;/h2&gt;
+&lt;div class=&#34;sectionbody&#34;&gt;
+&lt;div class=&#34;ulist&#34;&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;item 1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;日本語&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;puts &#34;Hello, World!&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;imageblock&#34;&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;img src=&#34;http://asciidoctor.org/images/octocat.jpg&#34; alt=&#34;GitHub mascot&#34;&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&#34;listingblock&#34;&gt;
+&lt;div class=&#34;title&#34;&gt;a.rb&lt;/div&gt;
+&lt;div class=&#34;content&#34;&gt;
+&lt;pre class=&#34;highlight&#34;&gt;&lt;code class=&#34;language-ruby&#34; data-lang=&#34;ruby&#34;&gt;puts &#34;Hello, World!&#34;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 </description>
     </item>
     

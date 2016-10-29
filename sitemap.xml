@@ -3,7 +3,12 @@
   
   <url>
     <loc>https://sibukixxx.github.io/</loc>
-    <lastmod>2016-10-23T23:17:59+09:00</lastmod>
+    <lastmod>2016-10-29T17:27:03+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sibukixxx.github.io/blog/thinking-of-markup/</loc>
+    <lastmod>2016-10-29T17:27:03+09:00</lastmod>
   </url>
   
   <url>
@@ -29,6 +34,10 @@
   <url>
     <loc>https://sibukixxx.github.io/blog/try-to-self-documented-makefile/</loc>
     <lastmod>2016-10-19T00:56:02+09:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sibukixxx.github.io/sample/</loc>
   </url>
   
 </urlset>
