@@ -6,8 +6,28 @@
     <description>Recent content on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Sat, 29 Oct 2016 17:27:03 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 29 Oct 2016 18:56:53 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>git stash</title>
+      <link>https://sibukixxx.github.io/blog/git-stash/</link>
+      <pubDate>Sat, 29 Oct 2016 18:56:53 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/git-stash/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;git stash save
+git stash save &amp;quot;message&amp;quot;
+git stash list 
+git stash show stash@{N}
+git stash show -p stash@{N} # diff
+git stash pop stash@{N} # apply =&amp;gt; delete
+git stash apply stash@{N} # apply =&amp;gt; leave
+git stash drop stash@{N} 
+git stash -k # all unstage
+git stash -u # all untrack
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>Thinking of markup</title>
