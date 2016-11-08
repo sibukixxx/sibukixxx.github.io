@@ -25,6 +25,7 @@
 
 &lt;pre&gt;&lt;code&gt;[@MBP01 workspace]$ brew install terraform
 [@MBP01 workspace]$ terraform version  
+Terraform v0.7.9
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;gcpの認証情報を取得&#34;&gt;GCPの認証情報を取得&lt;/h3&gt;
