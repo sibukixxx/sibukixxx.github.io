@@ -6,8 +6,75 @@
     <description>Recent content in Blog-rss on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Sat, 29 Oct 2016 18:56:53 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 08 Nov 2016 16:02:59 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Terraform で GCE やってみた</title>
+      <link>https://sibukixxx.github.io/blog/terraform-%E3%81%A7-gce-%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/</link>
+      <pubDate>Tue, 08 Nov 2016 16:02:59 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/terraform-%E3%81%A7-gce-%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/</guid>
+      <description>
+
+&lt;p&gt;GCP が東京リージョン(asia-northeast1)で正式運用開始されたようなので、いい機会だからTerraform を使ってインスタンスを立ち上げたくなった&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://googlecloudplatform-japan.blogspot.jp/2016/11/tokyo-region-now-open.html?m=1&#34;&gt;東京 GCP リージョン の正式運用を開始しました&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;terraformのインストール&#34;&gt;Terraformのインストール&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[@MBP01 workspace]$ brew install terraform
+[@MBP01 workspace]$ terraform version  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;gcpの認証情報を取得&#34;&gt;GCPの認証情報を取得&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;GCP コンソール&lt;/a&gt;
+1. API Manager
+2. 認証情報
+3. 認証情報を作成
+4. サービスアカウント キー
+5. Compute Engine default service account
+6. JSON
+7. 作成&lt;/p&gt;
+
+&lt;h3 id=&#34;terraform-の設定ファイルを準備する&#34;&gt;Terraform の設定ファイルを準備する&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;サンプル&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;# Configure the Google Cloud provider
+provider &amp;quot;google&amp;quot; {
+   　credentials = &amp;quot;${file(“service_account.json&amp;quot;)}&amp;quot;
+　　　project = “{project_id}”
+    region = &amp;quot;asia-northeast1-a&amp;quot;
+}
+
+# Configure the Google Compute Engine Instance
+resource &amp;quot;google_compute_instance&amp;quot; &amp;quot;default&amp;quot; {
+    name = &amp;quot;test01&amp;quot;
+    machine_type = &amp;quot;f1-micro&amp;quot;
+    zone = &amp;quot;asia-northeast1-a&amp;quot;
+    tags = [“test”]
+
+    disk {
+        image = &amp;quot;debian-7-wheezy-v20140814&amp;quot;
+    }
+
+    network_interface {
+        network = &amp;quot;default&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;gce-の確認&#34;&gt;GCE の確認&lt;/h3&gt;
+
+&lt;p&gt;“name” で指定したサーバーが立ち上がっているのを確認&lt;/p&gt;
+
+&lt;p&gt;おわり&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>git stash</title>

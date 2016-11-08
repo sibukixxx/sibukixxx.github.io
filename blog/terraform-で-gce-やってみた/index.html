@@ -2,7 +2,6 @@
 <html lang="Asia/Tokyo">
 
 <head>
-	<meta name="generator" content="Hugo 0.17" />
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="chrome=1">
 <meta name="HandheldFriendly" content="True">
@@ -14,10 +13,10 @@
 <title>
 
 
-     sibukixxx.github.io 
+     Terraform で GCE やってみた 
 
 </title>
-<link rel="canonical" href="https://sibukixxx.github.io/">
+<link rel="canonical" href="https://sibukixxx.github.io/blog/terraform-%E3%81%A7-gce-%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">
 
 
 <script type="text/javascript">
@@ -55,8 +54,6 @@
 >
 
 
-
-  <link href="https://sibukixxx.github.io/index.xml" rel="alternate" type="application/rss+xml" title="sibukixxx.github.io" />
 
 
 
@@ -114,67 +111,92 @@
     </div>
 </section>
 
-<section class="main">
+
+<section class="main post non-narrow zero-top-spacing">
     <div class="container">
         <div class="content">
-            <div class="page-heading">Blog</div>
-            <ul>
-            
-                
-                    <li class="post-item">
-    <span class="meta">Nov 8, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/terraform-%E3%81%A7-gce-%E3%82%84%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/"><span>Terraform で GCE やってみた</span></a>
-</li>
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
-                
-            
-                
-                    <li class="post-item">
-    <span class="meta">Oct 29, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/git-stash/"><span>git stash</span></a>
-</li>
+    Terraform で GCE やってみた
 
-                
-            
-                
-                    <li class="post-item">
-    <span class="meta">Oct 29, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/thinking-of-markup/"><span>Thinking of markup</span></a>
-</li>
+</div>
 
+                    <div class="initials"><a href="https://sibukixxx.github.io/">ad</a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Nov 8 2016 16:02:59 JST">Nov 8, 2016</div>
+                    <div class="reading-time"><div class="middot"></div>1 minute read</div>
+                </div>
+            </div>
+            <div class="markdown">
                 
-            
-                
-            
-                
-            
-                
-                    <li class="post-item">
-    <span class="meta">Oct 23, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/what-is-the-grand-totals-aggregations/"><span>What is the Grand Totals Aggregations</span></a>
-</li>
 
-                
-            
-                
-                    <li class="post-item">
-    <span class="meta">Oct 19, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/python-anaconda-install/"><span>Python Anaconda install</span></a>
-</li>
+<p>GCP が東京リージョン(asia-northeast1)で正式運用開始されたようなので、いい機会だからTerraform を使ってインスタンスを立ち上げたくなった</p>
 
-                
-            
-                
-                    <li class="post-item">
-    <span class="meta">Oct 19, 2016</span>
-    <a href="https://sibukixxx.github.io/blog/try-to-self-documented-makefile/"><span>Try to Self-Documented Makefile</span></a>
-</li>
+<p><a href="http://googlecloudplatform-japan.blogspot.jp/2016/11/tokyo-region-now-open.html?m=1">東京 GCP リージョン の正式運用を開始しました</a></p>
 
-                
+<h3 id="terraformのインストール">Terraformのインストール</h3>
+
+<pre><code>[@MBP01 workspace]$ brew install terraform
+[@MBP01 workspace]$ terraform version  
+</code></pre>
+
+<h3 id="gcpの認証情報を取得">GCPの認証情報を取得</h3>
+
+<p><a href="https://console.cloud.google.com/home/dashboard">GCP コンソール</a>
+1. API Manager
+2. 認証情報
+3. 認証情報を作成
+4. サービスアカウント キー
+5. Compute Engine default service account
+6. JSON
+7. 作成</p>
+
+<h3 id="terraform-の設定ファイルを準備する">Terraform の設定ファイルを準備する</h3>
+
+<ul>
+<li>サンプル</li>
+</ul>
+
+<pre><code># Configure the Google Cloud provider
+provider &quot;google&quot; {
+   　credentials = &quot;${file(“service_account.json&quot;)}&quot;
+　　　project = “{project_id}”
+    region = &quot;asia-northeast1-a&quot;
+}
+
+# Configure the Google Compute Engine Instance
+resource &quot;google_compute_instance&quot; &quot;default&quot; {
+    name = &quot;test01&quot;
+    machine_type = &quot;f1-micro&quot;
+    zone = &quot;asia-northeast1-a&quot;
+    tags = [“test”]
+
+    disk {
+        image = &quot;debian-7-wheezy-v20140814&quot;
+    }
+
+    network_interface {
+        network = &quot;default&quot;
+    }
+}
+</code></pre>
+
+<h3 id="gce-の確認">GCE の確認</h3>
+
+<p>“name” で指定したサーバーが立ち上がっているのを確認</p>
+
+<p>おわり</p>
+
+                <br>
+                <p><a href="https://sibukixxx.github.io/blog/">Back to posts</a></p>
+            </div>
+            <br>
             
                 
             
-            </ul>
         </div>
     </div>
 </section>
@@ -203,5 +225,4 @@ try {
 
 </body>
 </html>
-
 
