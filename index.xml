@@ -41,7 +41,11 @@
 &lt;h3 id=&#34;terraform-の設定ファイルを準備する&#34;&gt;Terraform の設定ファイルを準備する&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;サンプル&lt;/li&gt;
+&lt;li&gt;サンプル
+
+&lt;ul&gt;
+&lt;li&gt;gce_sample.tf&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;# Configure the Google Cloud provider
