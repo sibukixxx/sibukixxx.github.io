@@ -29,23 +29,22 @@
 
 &lt;h3 id=&#34;gcpの認証情報を取得&#34;&gt;GCPの認証情報を取得&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;GCP コンソール&lt;/a&gt;
-1. API Manager
-2. 認証情報
-3. 認証情報を作成
-4. サービスアカウント キー
-5. Compute Engine default service account
-6. JSON
-7. 作成&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://console.cloud.google.com/home/dashboard&#34;&gt;GCP コンソール&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;API Manager&lt;/li&gt;
+&lt;li&gt;認証情報&lt;/li&gt;
+&lt;li&gt;認証情報を作成&lt;/li&gt;
+&lt;li&gt;サービスアカウント キー&lt;/li&gt;
+&lt;li&gt;Compute Engine default service account&lt;/li&gt;
+&lt;li&gt;JSON&lt;/li&gt;
+&lt;li&gt;作成&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h3 id=&#34;terraform-の設定ファイルを準備する&#34;&gt;Terraform の設定ファイルを準備する&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;サンプル
-
-&lt;ul&gt;
-&lt;li&gt;gce_sample.tf&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;サンプル(gce_sample.tf)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;# Configure the Google Cloud provider
