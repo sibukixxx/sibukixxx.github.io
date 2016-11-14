@@ -6,8 +6,45 @@
     <description>Recent content in Blog-rss on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Tue, 08 Nov 2016 16:02:59 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 14 Nov 2016 10:10:05 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>日記(11/13)</title>
+      <link>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%9811/13/</link>
+      <pubDate>Mon, 14 Nov 2016 10:10:05 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%9811/13/</guid>
+      <description>
+
+&lt;h3 id=&#34;done&#34;&gt;Done&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;ownCloud&lt;/li&gt;
+&lt;li&gt;Let’sencrypt
+
+&lt;ul&gt;
+&lt;li&gt;certbot&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;自動更新&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;CentOS7
+
+&lt;ul&gt;
+&lt;li&gt;systemctl&lt;/li&gt;
+&lt;li&gt;firewalld&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Route53にA record追加&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;next&#34;&gt;Next&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;conoha オブジェクトストレージ追加&lt;/li&gt;
+&lt;li&gt;ownCloud 連携&lt;/li&gt;
+&lt;li&gt;ownCloud Serverのセキュリティ強化&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>Terraform で GCE やってみた</title>
