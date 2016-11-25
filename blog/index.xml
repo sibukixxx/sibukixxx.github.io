@@ -179,6 +179,8 @@ git stash -u # all untrack
 
 &lt;p&gt;マークアップをする心構えとして、HTML5にのっとった要素を積極的に利用していく。役割をHTML上で明示してあれば可用性が高まる。role属性やWAI-ARIA が当てはまる。逆にボタンを実装するような場合、単にdiv + aタグで囲みCSSでなんでもこなそうとしないほうがよい。&lt;/p&gt;
 
+&lt;p&gt;最近 WAI-ARIA に関する記事が増えてきた。記憶の掘り起こしのために雑なまとめを残しておく。&lt;/p&gt;
+
 &lt;h3 id=&#34;role属性&#34;&gt;role属性&lt;/h3&gt;
 
 &lt;p&gt;role 属性の一覧は下記URLで確認することができる&lt;/p&gt;
