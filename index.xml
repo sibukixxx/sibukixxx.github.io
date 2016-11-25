@@ -6,8 +6,40 @@
     <description>Recent content on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Mon, 14 Nov 2016 10:10:05 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 25 Nov 2016 17:26:52 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>日記（2016/11/25）</title>
+      <link>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%982016/11/25/</link>
+      <pubDate>Fri, 25 Nov 2016 17:26:52 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%982016/11/25/</guid>
+      <description>&lt;p&gt;今年は機械学習が流行になった.&lt;br /&gt;
+高校時代に数学を選択しなかったから学ぼうと思っても基本のキでつまづいてしまうことが多い.&lt;br /&gt;
+焦っても仕方がないので、わからないことがでてきたらひとつひとつ潰していくしかない.
+仕事で直接使わないからといって、これからのシステム開発で全く知らないのもいかがなものかと思うし.&lt;/p&gt;
+
+&lt;p&gt;そんな風に先月くらいまでぼんやり考えていたけど、今月からお世話になっている現場では統計や機械学習を売りにしたシステム開発をしている.
+Python すら実務で本格的に使うのは初めてだったけれどNumpy や Pandas は毎日触れるようになった.&lt;/p&gt;
+
+&lt;p&gt;だからなのか、最近はさらに数学の理解を高める必要性を感じている. 少なくとも回帰分析が実際何をしているのか、何を解決したいのかをもっとはっきり知っておかないと実装に影響がでるからだ.&lt;/p&gt;
+
+&lt;p&gt;本屋に立ち寄ってみるも、まず何から手を付ければいいか見当がつかなかったので地元の図書館でいい本がないか物色してきた.&lt;br /&gt;
+そして今日借りてきた本が以下の3冊.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;『もう一度 微分積分』&lt;/li&gt;
+&lt;li&gt;『APIデザイン ケーススタディ』&lt;/li&gt;
+&lt;li&gt;『システムインテグレーション 再生の戦略』&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;数学に関する本は1冊のみだけどちょうど知りたかった微分を会話形式で説明してくれていたので基礎を身に着けていきたい.
+他の2冊は前から読みたくて、たまたま見つけたので一緒に借りてきた. 図書館の有効活用ができて気分がいい.&lt;/p&gt;
+
+&lt;p&gt;文章を書く訓練にもなるので読み終えたら簡単な書評でも残せたらいいと思ってる.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>日記(11/13)</title>
