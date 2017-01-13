@@ -135,7 +135,7 @@
 
 <h3 id="コンソール上の警告-vue-warn-cannot-find-element-を削除する">コンソール上の警告([Vue warn]: Cannot find element) を削除する</h3>
 
-<p>参考URL：<a href="http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230">http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230</a></p>
+<p>参考URL: <a href="http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230">http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230</a></p>
 
 <p>自分の Laravel5.2 + Vue.js 環境でも起きたので対処法をメモ.</p>
 
@@ -143,6 +143,21 @@
   if (document.getElementById(&quot;feed&quot;)) { require('./feed.js') }
   if (document.getElementById(&quot;shop&quot;)) { require('./shop.js')  }
 }, false);
+</code></pre>
+
+<h3 id="consider-pre-initializing-the-property-with-the-data-option-for-more-reliable-reactivity-and-better-performance">Consider pre-initializing the property with the &ldquo;data&rdquo; option for more reliable reactivity and better performance.</h3>
+
+<p>参考URL: <a href="https://github.com/vuejs/Discussion/issues/352#issuecomment-132942027">https://github.com/vuejs/Discussion/issues/352#issuecomment-132942027</a></p>
+
+<blockquote>
+<p>For components, data must be function returning object:</p>
+</blockquote>
+
+<pre><code>data: function() {
+  return {
+    filterBy: 'none'
+  }
+}
 </code></pre>
 
                 <br>

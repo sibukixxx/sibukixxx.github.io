@@ -19,7 +19,7 @@
 
 &lt;h3 id=&#34;コンソール上の警告-vue-warn-cannot-find-element-を削除する&#34;&gt;コンソール上の警告([Vue warn]: Cannot find element) を削除する&lt;/h3&gt;
 
-&lt;p&gt;参考URL：&lt;a href=&#34;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&#34;&gt;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;参考URL: &lt;a href=&#34;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&#34;&gt;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;自分の Laravel5.2 + Vue.js 環境でも起きたので対処法をメモ.&lt;/p&gt;
 
@@ -27,6 +27,21 @@
   if (document.getElementById(&amp;quot;feed&amp;quot;)) { require(&#39;./feed.js&#39;) }
   if (document.getElementById(&amp;quot;shop&amp;quot;)) { require(&#39;./shop.js&#39;)  }
 }, false);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;consider-pre-initializing-the-property-with-the-data-option-for-more-reliable-reactivity-and-better-performance&#34;&gt;Consider pre-initializing the property with the &amp;ldquo;data&amp;rdquo; option for more reliable reactivity and better performance.&lt;/h3&gt;
+
+&lt;p&gt;参考URL: &lt;a href=&#34;https://github.com/vuejs/Discussion/issues/352#issuecomment-132942027&#34;&gt;https://github.com/vuejs/Discussion/issues/352#issuecomment-132942027&lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;For components, data must be function returning object:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;data: function() {
+  return {
+    filterBy: &#39;none&#39;
+  }
+}
 &lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
