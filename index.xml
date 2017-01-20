@@ -6,8 +6,27 @@
     <description>Recent content on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Fri, 13 Jan 2017 13:37:41 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 20 Jan 2017 16:28:16 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>20170122</title>
+      <link>https://sibukixxx.github.io/blog/20170122/</link>
+      <pubDate>Fri, 20 Jan 2017 16:28:16 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/20170122/</guid>
+      <description>
+
+&lt;h2 id=&#34;php-acquire-age-from-birth-date-carbon&#34;&gt;[PHP] Acquire age from birth date (Carbon)&lt;/h2&gt;
+
+&lt;p&gt;Carbon使えば一発らしい。ライブラリ冥利に尽きる
+- &lt;a href=&#34;http://www.84kure.com/blog/2016/06/16/php-%E7%94%9F%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%8B%E3%82%89%E5%B9%B4%E9%BD%A2%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B-carbon/&#34;&gt;参考：生年月日から年齢を取得する&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$dob = Carbon::parse(&#39;1987-02-18&#39;);
+$age = $dob-&amp;gt;age;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>日記 2017年1月13日</title>
