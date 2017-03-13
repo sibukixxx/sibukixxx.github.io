@@ -13,10 +13,10 @@
 <title>
 
 
-      
+     PM勉強会メモ 
 
 </title>
-<link rel="canonical" href="https://sibukixxx.github.io/blog/">
+<link rel="canonical" href="https://sibukixxx.github.io/blog/pm%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%83%A1%E3%83%A2/">
 
 
 <script type="text/javascript">
@@ -119,26 +119,125 @@
                 <div class="title-container">
                     <div class="page-heading">
 
-    
+    PM勉強会メモ
 
 </div>
 
                     <div class="initials"><a href="https://sibukixxx.github.io/">ad</a></div>
                 </div>
                 <div class="meta">
-                    <div class="date" title="Mon Jan 1 0001 00:00:00 UTC">Jan 1, 0001</div>
+                    <div class="date" title="Thu Mar 2 2017 19:38:03 JST">Mar 2, 2017</div>
                     <div class="reading-time"><div class="middot"></div>1 minute read</div>
                 </div>
             </div>
             <div class="markdown">
                 
 
-<h2 id="カスタマージャーニーについて">カスタマージャーニーについて</h2>
+<p>先日参加したプロジェクトマネージャ勉強会のメモ書き.<br />
+PMの基礎的な考え方を整理する.</p>
 
-<p><em>「顧客が購入に至るプロセス」</em></p>
+<h2 id="プロジェクトとは-pmとは">プロジェクトとは？PMとは？</h2>
 
-<p>##
-<a href="https://github.com/barryvdh/laravel-translation-manager/issues/158">https://github.com/barryvdh/laravel-translation-manager/issues/158</a></p>
+<ol>
+<li>ルーチンワークではない</li>
+<li>独自の、有期性のある</li>
+<li>「群盲象を撫ず」= プロジェクトが難しい理由</li>
+<li>不確実をみんなで確実にする</li>
+<li>確実なものに謙虚であれ</li>
+</ol>
+
+<h2 id="失敗例">失敗例</h2>
+
+<h3 id="計画不足-必要な社内手続きを知らない">計画不足：必要な社内手続きを知らない</h3>
+
+<pre><code>- 役員会の承認
+- 法務チェック
+- セキュリティ監査
+- セキュリティ規定の更新を怠る
+- →どれかを怠ってリリースの延期につながる
+- →プロダクトができていても
+</code></pre>
+
+<h3 id="状況確認-人材損失">状況確認：人材損失</h3>
+
+<pre><code>- 要件定義に時間がかかる
+- エンジニアが企画ミーティングが多すぎる
+- デザインが上がってこない
+- 機能にいつまでも変更が入る
+- エンジニアが尻ぬぐいさせられる
+- 辞める
+</code></pre>
+
+<h3 id="情報共有-ど忘れ">情報共有：ど忘れ</h3>
+
+<pre><code>- 忘れる
+- 都合がいい用に記憶が変わってしまう
+- 「言った」「言わない」紛争
+- 生産性低下
+</code></pre>
+
+<h3 id="改善手段">改善手段</h3>
+
+<ol>
+<li>計画：洗い出し</li>
+<li>状況確認：締切の共有</li>
+<li>情報共有：チームに共有</li>
+</ol>
+
+<h3 id="従来の方法の欠点">従来の方法の欠点</h3>
+
+<p>計画：Excel、次点でTrello、Jira
+状況確認：電話、定例ミーティングで進捗確認
+情報共有：メール、dropbox、slack, skype</p>
+
+<ul>
+<li>乱立するツール郡.</li>
+<li>学習コスト過多.</li>
+<li>サービスごとにログイン管理するコスト高い.</li>
+<li>連携機能の使い方のレベルが人によっては障壁になる.</li>
+</ul>
+
+<p>利用するツールに偏りが出る<br />
+情報量が増えすぎる、チャットのログが追えない等</p>
+
+<h3 id="タスクを洗い出せない">タスクを洗い出せない</h3>
+
+<ul>
+<li>計画は完璧である必要はない</li>
+<li>抜け漏れはチーム間で確認を早い時間にやる</li>
+<li>社内手続きはわからないから、全体像を作って抜け漏れを知ってる人に埋めさせる</li>
+</ul>
+
+<h3 id="締め切りが日々変わっていく">締め切りが日々変わっていく</h3>
+
+<ul>
+<li>プロジェクトマップ</li>
+<li>担当者がバラバラ、タスクの分岐で調整する</li>
+<li>後続タスクを別の人に変更させる</li>
+</ul>
+
+<h2 id="共有する理解がひとによって違う">共有する理解がひとによって違う</h2>
+
+<ul>
+<li>言った言わない</li>
+<li>共有された情報を理解できない人、平均以上の人の理解を増やす</li>
+<li>どういう経緯、どういう理由で</li>
+<li>関係メンバーには最初から権限を付与しておく</li>
+<li>後から深く関わる場合後追いしやすいようにする</li>
+</ul>
+
+<h3 id="駄目なプロジェクト">駄目なプロジェクト</h3>
+
+<ul>
+<li>やらなきゃいけないんだけど誰も責任持って引っ張っていかない</li>
+</ul>
+
+<h3 id="pmのコツ">PMのコツ</h3>
+
+<ul>
+<li>タスクを発起人が先に全て洗い出す</li>
+<li>アウトソーシングの場合</li>
+</ul>
 
                 <br>
                 <p><a href="https://sibukixxx.github.io/blog/">Back to posts</a></p>

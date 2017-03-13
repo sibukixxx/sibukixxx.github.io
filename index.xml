@@ -6,8 +6,189 @@
     <description>Recent content on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Fri, 20 Jan 2017 16:28:16 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 13 Mar 2017 12:59:07 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>自分用tmuxドキュメント</title>
+      <link>https://sibukixxx.github.io/blog/%E8%87%AA%E5%88%86%E7%94%A8tmux%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/</link>
+      <pubDate>Mon, 13 Mar 2017 12:59:07 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/%E8%87%AA%E5%88%86%E7%94%A8tmux%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88/</guid>
+      <description>
+
+&lt;p&gt;思い出したようにtmux の整理をしていたら昔設定した内容を忘れていたので備忘録として残しておく。&lt;/p&gt;
+
+&lt;h3 id=&#34;prefix-keyの変更&#34;&gt;prefix-keyの変更&lt;/h3&gt;
+
+&lt;p&gt;C-x 派&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# prefix
+unbind-key C-b
+set -g prefix &#39;C-x&#39;
+bind-key &#39;C-x&#39; send-prefix
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;設定のリロード&#34;&gt;設定のリロード&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;[prefix-key] r&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;pane内でスクロール&#34;&gt;pane内でスクロール&lt;/h3&gt;
+
+&lt;p&gt;スクロールモード&lt;br /&gt;
+&lt;code&gt;[prefix-key]  [&lt;/code&gt;&lt;br /&gt;
+&lt;code&gt;fn + ↑↓&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;各ペインの同期操作&#34;&gt;各ペインの同期操作&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;:set-window-option synchronize-panes on&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;キーバインド設定で省略可能&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bind e setw synchronize-panes on
+bind E setw synchronize-panes off
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;プラグイン周り&#34;&gt;プラグイン周り&lt;/h3&gt;
+
+&lt;p&gt;いつ導入したか思い出せないが、tmux-plugins/tpm を利用していた。&lt;br /&gt;
+&lt;code&gt;[prefix-key] I&lt;/code&gt;でインストールを実行する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set -g @tpm_plugins &amp;quot; \
+    tmux-plugins/tpm \
+    tmux-plugins/tmux-sidebar \
+    tmux-plugins/tmux-copycat \
+    tmux-plugins/tmux-open \
+    tmux-plugins/tmux-resurrect \
+    tmux-yank/tmux-yank \
+    tmux-plugins/tmux-battery \
+    tmux-plugins/tmux-online-status \
+&amp;quot;
+# tmux-resurrect
+set -g @resurrect-save &#39;S&#39;
+set -g @resurrect-restore &#39;R&#39;
+
+# Initialize tpm
+run-shell ~/.tmux/plugins/tpm/tpm
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>PM勉強会メモ</title>
+      <link>https://sibukixxx.github.io/blog/pm%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%83%A1%E3%83%A2/</link>
+      <pubDate>Thu, 02 Mar 2017 19:38:03 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/pm%E5%8B%89%E5%BC%B7%E4%BC%9A%E3%83%A1%E3%83%A2/</guid>
+      <description>
+
+&lt;p&gt;先日参加したプロジェクトマネージャ勉強会のメモ書き.&lt;br /&gt;
+PMの基礎的な考え方を整理する.&lt;/p&gt;
+
+&lt;h2 id=&#34;プロジェクトとは-pmとは&#34;&gt;プロジェクトとは？PMとは？&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;ルーチンワークではない&lt;/li&gt;
+&lt;li&gt;独自の、有期性のある&lt;/li&gt;
+&lt;li&gt;「群盲象を撫ず」= プロジェクトが難しい理由&lt;/li&gt;
+&lt;li&gt;不確実をみんなで確実にする&lt;/li&gt;
+&lt;li&gt;確実なものに謙虚であれ&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;失敗例&#34;&gt;失敗例&lt;/h2&gt;
+
+&lt;h3 id=&#34;計画不足-必要な社内手続きを知らない&#34;&gt;計画不足：必要な社内手続きを知らない&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;- 役員会の承認
+- 法務チェック
+- セキュリティ監査
+- セキュリティ規定の更新を怠る
+- →どれかを怠ってリリースの延期につながる
+- →プロダクトができていても
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;状況確認-人材損失&#34;&gt;状況確認：人材損失&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;- 要件定義に時間がかかる
+- エンジニアが企画ミーティングが多すぎる
+- デザインが上がってこない
+- 機能にいつまでも変更が入る
+- エンジニアが尻ぬぐいさせられる
+- 辞める
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;情報共有-ど忘れ&#34;&gt;情報共有：ど忘れ&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;- 忘れる
+- 都合がいい用に記憶が変わってしまう
+- 「言った」「言わない」紛争
+- 生産性低下
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;改善手段&#34;&gt;改善手段&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;計画：洗い出し&lt;/li&gt;
+&lt;li&gt;状況確認：締切の共有&lt;/li&gt;
+&lt;li&gt;情報共有：チームに共有&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;従来の方法の欠点&#34;&gt;従来の方法の欠点&lt;/h3&gt;
+
+&lt;p&gt;計画：Excel、次点でTrello、Jira
+状況確認：電話、定例ミーティングで進捗確認
+情報共有：メール、dropbox、slack, skype&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;乱立するツール郡.&lt;/li&gt;
+&lt;li&gt;学習コスト過多.&lt;/li&gt;
+&lt;li&gt;サービスごとにログイン管理するコスト高い.&lt;/li&gt;
+&lt;li&gt;連携機能の使い方のレベルが人によっては障壁になる.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;利用するツールに偏りが出る&lt;br /&gt;
+情報量が増えすぎる、チャットのログが追えない等&lt;/p&gt;
+
+&lt;h3 id=&#34;タスクを洗い出せない&#34;&gt;タスクを洗い出せない&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;計画は完璧である必要はない&lt;/li&gt;
+&lt;li&gt;抜け漏れはチーム間で確認を早い時間にやる&lt;/li&gt;
+&lt;li&gt;社内手続きはわからないから、全体像を作って抜け漏れを知ってる人に埋めさせる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;締め切りが日々変わっていく&#34;&gt;締め切りが日々変わっていく&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;プロジェクトマップ&lt;/li&gt;
+&lt;li&gt;担当者がバラバラ、タスクの分岐で調整する&lt;/li&gt;
+&lt;li&gt;後続タスクを別の人に変更させる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;共有する理解がひとによって違う&#34;&gt;共有する理解がひとによって違う&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;言った言わない&lt;/li&gt;
+&lt;li&gt;共有された情報を理解できない人、平均以上の人の理解を増やす&lt;/li&gt;
+&lt;li&gt;どういう経緯、どういう理由で&lt;/li&gt;
+&lt;li&gt;関係メンバーには最初から権限を付与しておく&lt;/li&gt;
+&lt;li&gt;後から深く関わる場合後追いしやすいようにする&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;駄目なプロジェクト&#34;&gt;駄目なプロジェクト&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;やらなきゃいけないんだけど誰も責任持って引っ張っていかない&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;pmのコツ&#34;&gt;PMのコツ&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;タスクを発起人が先に全て洗い出す&lt;/li&gt;
+&lt;li&gt;アウトソーシングの場合&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>20170122</title>
@@ -29,18 +210,18 @@ $age = $dob-&amp;gt;age;
     </item>
     
     <item>
-      <title>日記 2017年1月13日</title>
-      <link>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%98-2017%E5%B9%B41%E6%9C%8813%E6%97%A5/</link>
+      <title>日記2017年1月13日</title>
+      <link>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%982017%E5%B9%B41%E6%9C%8813%E6%97%A5/</link>
       <pubDate>Fri, 13 Jan 2017 13:37:41 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%98-2017%E5%B9%B41%E6%9C%8813%E6%97%A5/</guid>
+      <guid>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%982017%E5%B9%B41%E6%9C%8813%E6%97%A5/</guid>
       <description>
 
 &lt;h3 id=&#34;コンソール上の警告-vue-warn-cannot-find-element-を削除する&#34;&gt;コンソール上の警告([Vue warn]: Cannot find element) を削除する&lt;/h3&gt;
 
 &lt;p&gt;参考URL: &lt;a href=&#34;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&#34;&gt;http://qiita.com/yoneapp/items/3fbe4c1c133cfef87230&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;自分の Laravel5.2 + Vue.js 環境でも起きたので対処法をメモ.&lt;/p&gt;
+&lt;p&gt;自分のLaravel5.2 + Vue.js環境でも起きたので対処法をメモ.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
   if (document.getElementById(&amp;quot;feed&amp;quot;)) { require(&#39;./feed.js&#39;) }
@@ -439,30 +620,18 @@ makeはいつかやろうとして後回しにしていたのでようやく取�
     
     <item>
       <title></title>
-      <link>https://sibukixxx.github.io/sample/</link>
+      <link>https://sibukixxx.github.io/blog/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://sibukixxx.github.io/sample/</guid>
-      <description>= Hello, AsciiDoc!
-Doc Writer &lt;doc@example.com&gt;
+      <guid>https://sibukixxx.github.io/blog/</guid>
+      <description>
 
-An introduction to http://asciidoc.org[AsciiDoc].
+&lt;h2 id=&#34;カスタマージャーニーについて&#34;&gt;カスタマージャーニーについて&lt;/h2&gt;
 
-== First Section
+&lt;p&gt;&lt;em&gt;「顧客が購入に至るプロセス」&lt;/em&gt;&lt;/p&gt;
 
-* item 1
-* 日本語
-
-[source,ruby]
-puts &#34;Hello, World!&#34;
-
-image::http://asciidoctor.org/images/octocat.jpg[GitHub mascot]
-
-[source,ruby]
-.a.rb
-----
-puts &#34;Hello, World!&#34;
-----
+&lt;p&gt;##
+&lt;a href=&#34;https://github.com/barryvdh/laravel-translation-manager/issues/158&#34;&gt;https://github.com/barryvdh/laravel-translation-manager/issues/158&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
