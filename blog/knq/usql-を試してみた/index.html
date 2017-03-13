@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="Asia/Tokyo">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="peace of mind">
+
+<base href="https://sibukixxx.github.io/">
+<title>
+
+
+     knq/usql を試してみた 
+
+</title>
+<link rel="canonical" href="https://sibukixxx.github.io/blog/knq/usql-%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/sibukixxx.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/default.min.css">
+
+
+
+
+
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/reset.css">
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://sibukixxx.github.io/css/main.css">
+
+
+    <link rel="stylesheet" href="https://sibukixxx.github.io/css/override.css">
+
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://sibukixxx.github.io/img/leaf.ico"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="ja">
+
+<section class="header"> 
+    <div class="container">
+        <div class="content">
+            <a href="https://sibukixxx.github.io/"><div class="name">sibukixxx.github.io</div></a>
+            <nav>
+                <ul>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="//github.com/sibukixxx" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="//twitter.com/sibukixxx" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+            <a href="https://sibukixxx.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    knq/usql を試してみた
+
+</div>
+
+                    <div class="initials"><a href="https://sibukixxx.github.io/">ad</a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Mar 14 2017 14:59:07 JST">Mar 14, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>1 minute read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="usql-とは">usql とは</h2>
+
+<p>Githubの説明から、「usql is a universal command-line interface for SQL databases
+」とある。
+- 複数のRDBMSに対応したCLIベースのクライアント
+- psql互換
+- golang実装。<br />
+<a href="https://github.com/knq/usql">knq/usql</a></p>
+
+<h2 id="インストール">インストール</h2>
+
+<p>$ go get -u github.com/knq/usql</p>
+
+<h2 id="ローカルホストで試してみた">ローカルホストで試してみた</h2>
+
+<p><code>usql pg://user:pass@localhost/dbname?sslmode=disable</code></p>
+
+<p>Postgresで試したところSSLで弾かれたが既にissueに解決方法が記載されていた.<br />
+末尾に「?sslmode=disable 」を付与すればいいようだ.<br />
+cf. <a href="https://github.com/knq/usql/issues/6">Allow Postgres without SSL?</a></p>
+
+<p>Go実装なので簡単に導入して試せるところがいい.<br />
+複数DBを行ったり来たりすることはよくあるので引き続き使っていきたい.</p>
+
+                <br>
+                <p><a href="https://sibukixxx.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            
+                
+            
+        </div>
+    </div>
+</section>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+    var pageTracker = _gat._getTracker("UA-28970754-1");
+    pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+

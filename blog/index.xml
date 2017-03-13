@@ -6,8 +6,42 @@
     <description>Recent content in Blog-rss on sibukixxx.github.io</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>Asia/Tokyo</language>
-    <lastBuildDate>Mon, 13 Mar 2017 12:59:07 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 14 Mar 2017 14:59:07 +0900</lastBuildDate>
     <atom:link href="https://sibukixxx.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>knq/usql を試してみた</title>
+      <link>https://sibukixxx.github.io/blog/knq/usql-%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/</link>
+      <pubDate>Tue, 14 Mar 2017 14:59:07 +0900</pubDate>
+      
+      <guid>https://sibukixxx.github.io/blog/knq/usql-%E3%82%92%E8%A9%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F/</guid>
+      <description>
+
+&lt;h2 id=&#34;usql-とは&#34;&gt;usql とは&lt;/h2&gt;
+
+&lt;p&gt;Githubの説明から、「usql is a universal command-line interface for SQL databases
+」とある。
+- 複数のRDBMSに対応したCLIベースのクライアント
+- psql互換
+- golang実装。&lt;br /&gt;
+&lt;a href=&#34;https://github.com/knq/usql&#34;&gt;knq/usql&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
+
+&lt;p&gt;$ go get -u github.com/knq/usql&lt;/p&gt;
+
+&lt;h2 id=&#34;ローカルホストで試してみた&#34;&gt;ローカルホストで試してみた&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;usql pg://user:pass@localhost/dbname?sslmode=disable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Postgresで試したところSSLで弾かれたが既にissueに解決方法が記載されていた.&lt;br /&gt;
+末尾に「?sslmode=disable 」を付与すればいいようだ.&lt;br /&gt;
+cf. &lt;a href=&#34;https://github.com/knq/usql/issues/6&#34;&gt;Allow Postgres without SSL?&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Go実装なので簡単に導入して試せるところがいい.&lt;br /&gt;
+複数DBを行ったり来たりすることはよくあるので引き続き使っていきたい.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>自分用tmuxドキュメント</title>
