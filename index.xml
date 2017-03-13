@@ -191,17 +191,20 @@ PMの基礎的な考え方を整理する.&lt;/p&gt;
     </item>
     
     <item>
-      <title>20170122</title>
-      <link>https://sibukixxx.github.io/blog/20170122/</link>
+      <title>[PHP] Acquire age from birth date (Carbon)</title>
+      <link>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</link>
       <pubDate>Fri, 20 Jan 2017 16:28:16 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/20170122/</guid>
+      <guid>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</guid>
       <description>
 
 &lt;h2 id=&#34;php-acquire-age-from-birth-date-carbon&#34;&gt;[PHP] Acquire age from birth date (Carbon)&lt;/h2&gt;
 
-&lt;p&gt;Carbon使えば一発らしい。ライブラリ冥利に尽きる
-- &lt;a href=&#34;http://www.84kure.com/blog/2016/06/16/php-%E7%94%9F%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%8B%E3%82%89%E5%B9%B4%E9%BD%A2%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B-carbon/&#34;&gt;参考：生年月日から年齢を取得する&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Carbon使えば一発らしい。ライブラリ冥利に尽きる&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.84kure.com/blog/2016/06/16/php-%E7%94%9F%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%8B%E3%82%89%E5%B9%B4%E9%BD%A2%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B-carbon/&#34;&gt;参考：生年月日から年齢を取得する&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;$dob = Carbon::parse(&#39;1987-02-18&#39;);
 $age = $dob-&amp;gt;age;
@@ -279,11 +282,11 @@ Python すら実務で本格的に使うのは初めてだったけれどNumpy �
     </item>
     
     <item>
-      <title>日記(11/13)</title>
-      <link>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%9811/13/</link>
+      <title>[PHP] Acquire age from birth date (Carbon)</title>
+      <link>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</link>
       <pubDate>Mon, 14 Nov 2016 10:10:05 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/%E6%97%A5%E8%A8%9811/13/</guid>
+      <guid>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</guid>
       <description>
 
 &lt;h3 id=&#34;done&#34;&gt;Done&lt;/h3&gt;
