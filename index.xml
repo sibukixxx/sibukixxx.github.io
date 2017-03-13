@@ -20,11 +20,15 @@
 &lt;h2 id=&#34;usql-とは&#34;&gt;usql とは&lt;/h2&gt;
 
 &lt;p&gt;Githubの説明から、「usql is a universal command-line interface for SQL databases
-」とある。
-- 複数のRDBMSに対応したCLIベースのクライアント
-- psql互換
-- golang実装。&lt;br /&gt;
-&lt;a href=&#34;https://github.com/knq/usql&#34;&gt;knq/usql&lt;/a&gt;&lt;/p&gt;
+」とある。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;複数のRDBMSに対応したCLIベースのクライアント&lt;/li&gt;
+&lt;li&gt;psql互換&lt;/li&gt;
+&lt;li&gt;golang実装。&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/knq/usql&#34;&gt;knq/usql&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;インストール&#34;&gt;インストール&lt;/h2&gt;
 
