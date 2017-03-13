@@ -282,12 +282,14 @@ Python すら実務で本格的に使うのは初めてだったけれどNumpy �
     </item>
     
     <item>
-      <title>[PHP] Acquire age from birth date (Carbon)</title>
-      <link>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</link>
+      <title>11/13 作業メモ.</title>
+      <link>https://sibukixxx.github.io/blog/11/13-%E4%BD%9C%E6%A5%AD%E3%83%A1%E3%83%A2./</link>
       <pubDate>Mon, 14 Nov 2016 10:10:05 +0900</pubDate>
       
-      <guid>https://sibukixxx.github.io/blog/php-acquire-age-from-birth-date-carbon/</guid>
+      <guid>https://sibukixxx.github.io/blog/11/13-%E4%BD%9C%E6%A5%AD%E3%83%A1%E3%83%A2./</guid>
       <description>
+
+&lt;p&gt;作業メモ。&lt;/p&gt;
 
 &lt;h3 id=&#34;done&#34;&gt;Done&lt;/h3&gt;
 
@@ -633,8 +635,7 @@ makeはいつかやろうとして後回しにしていたのでようやく取�
 
 &lt;p&gt;&lt;em&gt;「顧客が購入に至るプロセス」&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;##
-&lt;a href=&#34;https://github.com/barryvdh/laravel-translation-manager/issues/158&#34;&gt;https://github.com/barryvdh/laravel-translation-manager/issues/158&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/barryvdh/laravel-translation-manager/issues/158&#34;&gt;https://github.com/barryvdh/laravel-translation-manager/issues/158&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

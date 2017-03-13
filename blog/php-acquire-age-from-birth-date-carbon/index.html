@@ -126,39 +126,24 @@
                     <div class="initials"><a href="https://sibukixxx.github.io/">ad</a></div>
                 </div>
                 <div class="meta">
-                    <div class="date" title="Mon Nov 14 2016 10:10:05 JST">Nov 14, 2016</div>
+                    <div class="date" title="Fri Jan 20 2017 16:28:16 JST">Jan 20, 2017</div>
                     <div class="reading-time"><div class="middot"></div>1 minute read</div>
                 </div>
             </div>
             <div class="markdown">
                 
 
-<h3 id="done">Done</h3>
+<h2 id="php-acquire-age-from-birth-date-carbon">[PHP] Acquire age from birth date (Carbon)</h2>
+
+<p>Carbon使えば一発らしい。ライブラリ冥利に尽きる</p>
 
 <ul>
-<li>ownCloud</li>
-<li>Let’sencrypt
-
-<ul>
-<li>certbot<br /></li>
-<li>自動更新</li>
-</ul></li>
-<li>CentOS7
-
-<ul>
-<li>systemctl</li>
-<li>firewalld</li>
-</ul></li>
-<li>Route53にA record追加</li>
+<li><a href="http://www.84kure.com/blog/2016/06/16/php-%E7%94%9F%E5%B9%B4%E6%9C%88%E6%97%A5%E3%81%8B%E3%82%89%E5%B9%B4%E9%BD%A2%E3%82%92%E5%8F%96%E5%BE%97%E3%81%99%E3%82%8B-carbon/">参考：生年月日から年齢を取得する</a></li>
 </ul>
 
-<h3 id="next">Next</h3>
-
-<ul>
-<li>conoha オブジェクトストレージ追加</li>
-<li>ownCloud 連携</li>
-<li>ownCloud Serverのセキュリティ強化</li>
-</ul>
+<pre><code>$dob = Carbon::parse('1987-02-18');
+$age = $dob-&gt;age;
+</code></pre>
 
                 <br>
                 <p><a href="https://sibukixxx.github.io/">Back to posts</a></p>
