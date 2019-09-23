@@ -1,82 +1,141 @@
 module.exports = {
-  pathPrefix: '/',
   siteMetadata: {
-    title: 'Calpa&apos;s Blog',
-    description: 'Front End Technical Blog - Calpa',
-    siteUrl: 'https://calpa.me',
-    author: 'Calpa',
+    title: `Gatsby Starter Blog MDX`,
+    author: `Matt Hagner`,
+    description: `An extension of the gatsby starter blog, with support for MDX`,
+    siteUrl: `https://gatsby-starter-blog-mdx-demo.netlify.com/`,
+    social: {
+      twitter: `mattinthecouch`,
+    },
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-catch-links',
-    'gatsby-plugin-webpack-bundle-analyzer',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/content`,
-        name: 'pages',
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        plugins: [
-          'gatsby-remark-autolink-headers',
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [
           {
-            resolve: 'gatsby-remark-prismjs',
+            resolve: `gatsby-remark-images`,
             options: {
-              showLineNumbers: true,
+              maxWidth: 590,
             },
           },
           {
-            resolve: 'gatsby-remark-external-links',
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+          },
+
+          {
+            resolve: `gatsby-remark-smartypants`,
+          },
+        ],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        //trackingId: `ADD YOUR TRACKING ID HERE`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  data: edge.node.frontmatter.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ 'content:encoded': edge.node.body }],
+                })
+              })
+            },
+
+            /* if you want to filter for only published posts, you can do
+             * something like this:
+             * filter: { frontmatter: { published: { ne: false } } }
+             * just make sure to add a published frontmatter field to all posts,
+             * otherwise gatsby will complain
+             **/
+            query: `
+            {
+              allMdx(
+                limit: 1000,
+                sort: { order: DESC, fields: [frontmatter___date] },
+              ) {
+                edges {
+                  node {
+                    fields { slug }
+                    frontmatter {
+                      title
+                      date
+                    }
+                    body
+                  }
+                }
+              }
+            }
+            `,
+            output: '/rss.xml',
+            title: 'Gatsby RSS feed',
           },
         ],
       },
     },
     {
-      resolve: 'gatsby-plugin-layout',
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        component: require.resolve('./src/components/Layout/layout.js'),
+        name: `Gatsby Starter Blog`,
+        short_name: `GatsbyJS`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#663399`,
+        display: `minimal-ui`,
+        icon: `content/assets/gatsby-icon.png`,
       },
     },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
     {
-      resolve: 'gatsby-plugin-sitemap',
-    },
-    {
-      resolve: 'gatsby-plugin-sentry',
+      resolve: `gatsby-plugin-typography`,
       options: {
-        dsn: 'https://fe988b5e96fc4634babe220e23464e15@sentry.io/1274827',
+        pathToConfigModule: `src/utils/typography`,
       },
     },
-    {
-      resolve: 'gatsby-plugin-nprogress',
-    },
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: "Calpa's Blog",
-        short_name: 'Calpa',
-        start_url: '/',
-        background_color: '#ededed',
-        theme_color: '#384f7c',
-        display: 'standalone',
-        icons: [
-          {
-            src: '/favicons/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/favicons/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
-    },
-    'gatsby-plugin-offline', // put this after gatsby-plugin-manifest
-    'gatsby-plugin-netlify', // make sure to put last in the array
   ],
-};
+}
