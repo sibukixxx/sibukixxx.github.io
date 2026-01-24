@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import BlogCard from '../components/BlogCard.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects.slice(0, 3);
+---
+
+<Base title="sibukixxx | Blog & Portfolio">
+  <Header />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-primary-50 to-white py-20 dark:from-gray-900 dark:to-gray-800">
+      <div class="mx-auto max-w-5xl px-4 text-center">
+        <h1 class="mb-6 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+          Hi, I'm <span class="text-primary-600 dark:text-primary-400">sibukixxx</span>
+        </h1>
+        <p class="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+          ソフトウェアエンジニアとして技術に関する記事を書いています。
+          このサイトでは、日々の学びやプロジェクトを共有しています。
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+          <a
+            href="/blog"
+            class="rounded-lg bg-primary-600 px-6 py-3 font-medium text-white transition-colors hover:bg-primary-700"
+          >
+            ブログを読む
+          </a>
+          <a
+            href="/projects"
+            class="rounded-lg border border-gray-300 bg-white px-6 py-3 font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          >
+            プロジェクト一覧
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Posts Section -->
+    <section class="py-16">
+      <div class="mx-auto max-w-5xl px-4">
+        <div class="mb-8 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            最新の記事
+          </h2>
+          <a
+            href="/blog"
+            class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
+          >
+            すべて見る →
+          </a>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {recentPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              slug={post.slug}
+              tags={post.data.tags}
+            />
+          ))}
+        </div>
+        {recentPosts.length === 0 && (
+          <p class="text-center text-gray-500 dark:text-gray-400">
+            まだ記事がありません。
+          </p>
+        )}
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="bg-gray-100 py-16 dark:bg-gray-800">
+      <div class="mx-auto max-w-5xl px-4">
+        <div class="mb-8 flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            プロジェクト
+          </h2>
+          <a
+            href="/projects"
+            class="text-sm font-medium text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300"
+          >
+            すべて見る →
+          </a>
+        </div>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              url={project.data.url}
+              github={project.data.github}
+              tech={project.data.tech}
+            />
+          ))}
+        </div>
+        {featuredProjects.length === 0 && (
+          <p class="text-center text-gray-500 dark:text-gray-400">
+            まだプロジェクトがありません。
+          </p>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

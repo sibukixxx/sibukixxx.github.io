@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Base title="Blog | sibukixxx" description="技術記事や日々の学びを発信しています">
+  <Header />
+
+  <main class="py-12">
+    <div class="mx-auto max-w-5xl px-4">
+      <header class="mb-12 text-center">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          Blog
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          技術的な学びや考えをまとめています
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {sortedPosts.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            slug={post.slug}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+
+      {sortedPosts.length === 0 && (
+        <div class="rounded-xl border border-gray-200 bg-white p-12 text-center dark:border-gray-700 dark:bg-gray-800">
+          <p class="text-gray-500 dark:text-gray-400">
+            まだ記事がありません。最初の記事を書いてみましょう！
+          </p>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</Base>
