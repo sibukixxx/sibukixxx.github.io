@@ -1,0 +1,28 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{tocHeadings.length > 0 && (
+  <nav aria-labelledby="toc-heading" class="toc">
+    <h2 id="toc-heading" class="toc-title">目次</h2>
+    <ol class="toc-list">
+      {tocHeadings.map((heading) => (
+        <li class:list={[heading.depth === 3 && 'toc-indent']}>
+          <a href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
