@@ -3,7 +3,7 @@ title: 'Blacksmith で GitHub Actions を高速化＆コスト削減'
 description: 'GitHub Actions を2倍速く、コストを半分にする Blacksmith の導入方法と Sticky Disk 機能を紹介します。'
 pubDate: 2026-02-15
 tags: ['GitHub Actions', 'CI/CD', 'DevOps']
-draft: true
+draft: false
 ---
 
 ## Blacksmith とは
