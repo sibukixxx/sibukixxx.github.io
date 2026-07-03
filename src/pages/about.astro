@@ -1,0 +1,186 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const skills = {
+  languages: ['TypeScript', 'JavaScript', 'Python', 'Go', 'Rust'],
+  frontend: ['React', 'Next.js', 'Vue.js', 'Astro', 'Tailwind CSS'],
+  backend: ['Node.js', 'Express', 'FastAPI', 'PostgreSQL', 'Redis'],
+  devops: ['Docker', 'Kubernetes', 'AWS', 'GitHub Actions', 'Terraform'],
+  others: ['Git', 'Linux', 'TDD', 'Agile', 'DDD'],
+};
+---
+
+<Base title="About | sibukixxx" description="sibukixxx のプロフィール、スキル、経歴について">
+  <Header />
+
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <!-- Hero Section -->
+    <section class="mb-16 text-center">
+      <div class="mb-6 inline-block rounded-full bg-gradient-to-r from-primary-400 to-primary-600 p-1">
+        <div class="rounded-full bg-gray-50 p-1 dark:bg-gray-900">
+          <div class="flex h-32 w-32 items-center justify-center rounded-full bg-gradient-to-br from-primary-100 to-primary-200 text-5xl dark:from-primary-800 dark:to-primary-900">
+            <span aria-hidden="true">S</span>
+          </div>
+        </div>
+      </div>
+      <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+        sibukixxx
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">
+        Software Engineer / Full Stack Developer
+      </p>
+    </section>
+
+    <!-- Introduction -->
+    <section class="mb-16">
+      <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+        About Me
+      </h2>
+      <div class="prose prose-lg dark:prose-invert">
+        <p>
+          ソフトウェアエンジニアとして、フロントエンドからバックエンド、インフラまで幅広い領域で開発を行っています。
+          特にテスト駆動開発（TDD）を重視し、保守性と品質の高いコードを書くことを心がけています。
+        </p>
+        <p>
+          新しい技術やツールを学ぶことが好きで、常に最新のトレンドをキャッチアップしながら、
+          実践的なプロジェクトに取り組んでいます。
+        </p>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="mb-16">
+      <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+        Skills
+      </h2>
+
+      <div class="space-y-6">
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            Programming Languages
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.languages.map((skill) => (
+              <span class="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            Frontend
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.frontend.map((skill) => (
+              <span class="rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            Backend
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.backend.map((skill) => (
+              <span class="rounded-full bg-purple-100 px-4 py-2 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            DevOps & Infrastructure
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.devops.map((skill) => (
+              <span class="rounded-full bg-orange-100 px-4 py-2 text-sm font-medium text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 class="mb-3 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+            Others
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {skills.others.map((skill) => (
+              <span class="rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="mb-16">
+      <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+        My Values
+      </h2>
+      <div class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Quality First
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            テスト駆動開発を通じて、信頼性の高いコードを書くことを最優先にしています。
+          </p>
+        </div>
+        <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Continuous Learning
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            技術は常に進化しています。新しい知識を学び続けることを大切にしています。
+          </p>
+        </div>
+        <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Simplicity
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            複雑な問題をシンプルに解決することを心がけています。
+          </p>
+        </div>
+        <div class="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+          <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
+            Collaboration
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            チームでの協力を大切にし、知識を共有することで全体の成長に貢献します。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="rounded-lg bg-gradient-to-r from-primary-500 to-primary-600 p-8 text-center text-white">
+      <h2 class="mb-4 text-2xl font-bold">
+        お仕事のご依頼・ご相談
+      </h2>
+      <p class="mb-6 opacity-90">
+        プロジェクトのご相談やお仕事のご依頼など、お気軽にご連絡ください。
+      </p>
+      <a
+        href="/contact"
+        class="inline-block rounded-lg bg-white px-6 py-3 font-semibold text-primary-600 transition-colors hover:bg-gray-100"
+      >
+        お問い合わせ
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
