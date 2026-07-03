@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+import { getTagUrl } from '../../utils/tags';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+// Collect all tags and count occurrences
+const tagCounts = new Map<string, number>();
+allPosts.forEach((post) => {
+  post.data.tags?.forEach((tag) => {
+    tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+  });
+});
+
+// Sort tags by count (descending), then alphabetically
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => {
+  if (b[1] !== a[1]) return b[1] - a[1];
+  return a[0].localeCompare(b[0]);
+});
+---
+
+<Base title="Tags | sibukixxx" description="ブログ記事のタグ一覧">
+  <Header />
+
+  <main class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-8 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+      Tags
+    </h1>
+
+    {sortedTags.length > 0 ? (
+      <div class="flex flex-wrap gap-3">
+        {sortedTags.map(([tag, count]) => (
+          <a
+            href={getTagUrl(tag)}
+            class="group flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 transition-all hover:border-primary-300 hover:bg-primary-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:border-primary-600 dark:hover:bg-primary-900/30"
+          >
+            <span class="font-medium text-gray-900 group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
+              {tag}
+            </span>
+            <span class="rounded-full bg-gray-100 px-2 py-0.5 text-sm text-gray-600 group-hover:bg-primary-100 group-hover:text-primary-700 dark:bg-gray-700 dark:text-gray-400 dark:group-hover:bg-primary-800 dark:group-hover:text-primary-300">
+              {count}
+            </span>
+          </a>
+        ))}
+      </div>
+    ) : (
+      <p class="text-center text-gray-500 dark:text-gray-400">
+        タグがありません。
+      </p>
+    )}
+  </main>
+
+  <Footer />
+</Base>
