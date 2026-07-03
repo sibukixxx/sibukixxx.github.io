@@ -4,6 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
+本プロジェクトは npm 運用（`package-lock.json` のみ存在。グローバル pnpm 規則の例外）。
+
 ```bash
 npm run dev      # Start development server (localhost:4321)
 npm run build    # Build for production (outputs to ./dist)
