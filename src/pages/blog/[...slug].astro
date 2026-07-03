@@ -3,18 +3,45 @@ import BlogPost from '../../layouts/BlogPost.astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+
+  return allPosts.map((post) => {
+    // Find related posts (same tags, excluding current post)
+    const relatedPosts = allPosts
+      .filter((p) => {
+        if (p.slug === post.slug) return false;
+        const commonTags = post.data.tags?.filter((tag) =>
+          p.data.tags?.includes(tag)
+        );
+        return commonTags && commonTags.length > 0;
+      })
+      .sort((a, b) => {
+        // Sort by number of common tags (descending)
+        const aCommon = a.data.tags?.filter((tag) =>
+          post.data.tags?.includes(tag)
+        ).length || 0;
+        const bCommon = b.data.tags?.filter((tag) =>
+          post.data.tags?.includes(tag)
+        ).length || 0;
+        if (bCommon !== aCommon) return bCommon - aCommon;
+        // Then by date (newest first)
+        return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+      })
+      .slice(0, 3);
+
+    return {
+      params: { slug: post.slug },
+      props: { post, relatedPosts },
+    };
+  });
 }
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  relatedPosts: CollectionEntry<'blog'>[];
 }
 
-const { post } = Astro.props;
+const { post, relatedPosts } = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
@@ -24,6 +51,8 @@ const { Content, headings } = await post.render();
   pubDate={post.data.pubDate}
   tags={post.data.tags}
   headings={headings}
+  slug={post.slug}
+  relatedPosts={relatedPosts}
 >
   <Content />
 </BlogPost>

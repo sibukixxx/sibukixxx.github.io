@@ -3,6 +3,11 @@ import Base from './Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import TableOfContents from '../components/TableOfContents.astro';
+import ShareButtons from '../components/ShareButtons.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import ReadingProgress from '../components/ReadingProgress.astro';
+import { getTagUrl } from '../utils/tags';
+import type { CollectionEntry } from 'astro:content';
 
 interface Heading {
   depth: number;
@@ -16,18 +21,23 @@ interface Props {
   pubDate: Date;
   tags?: string[];
   headings?: Heading[];
+  slug?: string;
+  relatedPosts?: CollectionEntry<'blog'>[];
 }
 
-const { title, description, pubDate, tags = [], headings = [] } = Astro.props;
+const { title, description, pubDate, tags = [], headings = [], slug, relatedPosts = [] } = Astro.props;
 
 const formattedDate = pubDate.toLocaleDateString('ja-JP', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 });
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <Base title={`${title} | sibukixxx`} description={description}>
+  <ReadingProgress />
   <Header />
   <main class="mx-auto max-w-3xl px-4 py-12">
     <article>
@@ -36,11 +46,14 @@ const formattedDate = pubDate.toLocaleDateString('ja-JP', {
         <div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400">
           <time datetime={pubDate.toISOString()}>{formattedDate}</time>
           {tags.length > 0 && (
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2">
               {tags.map((tag) => (
-                <span class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 dark:bg-primary-900 dark:text-primary-300">
+                <a
+                  href={getTagUrl(tag)}
+                  class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
+                >
                   {tag}
-                </span>
+                </a>
               ))}
             </div>
           )}
@@ -50,6 +63,14 @@ const formattedDate = pubDate.toLocaleDateString('ja-JP', {
       <div class="prose prose-lg prose-gray dark:prose-invert">
         <slot />
       </div>
+
+      <!-- Share Buttons -->
+      <div class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
+        <ShareButtons title={title} url={canonicalUrl} />
+      </div>
+
+      <!-- Related Posts -->
+      <RelatedPosts posts={relatedPosts} />
     </article>
   </main>
   <Footer />
