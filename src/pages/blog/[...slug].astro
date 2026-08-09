@@ -1,6 +1,6 @@
 ---
 import BlogPost from '../../layouts/BlogPost.astro';
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -9,7 +9,7 @@ export async function getStaticPaths() {
     // Find related posts (same tags, excluding current post)
     const relatedPosts = allPosts
       .filter((p) => {
-        if (p.slug === post.slug) return false;
+        if (p.id === post.id) return false;
         const commonTags = post.data.tags?.filter((tag) =>
           p.data.tags?.includes(tag)
         );
@@ -30,7 +30,7 @@ export async function getStaticPaths() {
       .slice(0, 3);
 
     return {
-      params: { slug: post.slug },
+      params: { slug: post.id },
       props: { post, relatedPosts },
     };
   });
@@ -42,7 +42,7 @@ interface Props {
 }
 
 const { post, relatedPosts } = Astro.props;
-const { Content, headings } = await post.render();
+const { Content, headings } = await render(post);
 ---
 
 <BlogPost
@@ -51,7 +51,7 @@ const { Content, headings } = await post.render();
   pubDate={post.data.pubDate}
   tags={post.data.tags}
   headings={headings}
-  slug={post.slug}
+  slug={post.id}
   relatedPosts={relatedPosts}
 >
   <Content />
