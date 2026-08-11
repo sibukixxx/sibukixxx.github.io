@@ -8,6 +8,8 @@ const description =
 
 <Base title={title} description={description} lang="en">
   <main class="portfolio-page">
+    <p class="lang-switch"><a href="/portfolio">日本語版 →</a></p>
+
     <header class="portfolio-hero">
       <h1>Yuichi Takada</h1>
       <p class="portfolio-title">Senior Software Engineer · AI Coding Expert</p>
@@ -290,6 +292,23 @@ const description =
     line-height: 1.55;
   }
 
+  .lang-switch {
+    margin: 0 0 20px;
+    text-align: right;
+    font-size: 0.85rem;
+  }
+
+  .lang-switch a {
+    color: var(--sub);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .lang-switch a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
   .portfolio-hero {
     margin-bottom: 36px;
   }
@@ -457,6 +476,10 @@ const description =
       max-width: 100%;
       padding: 0;
       font-size: 12.5px;
+    }
+
+    .lang-switch {
+      display: none;
     }
 
     .chip {
