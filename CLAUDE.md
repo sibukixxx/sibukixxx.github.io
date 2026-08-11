@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-本プロジェクトは npm 運用（`package-lock.json` のみ存在。グローバル pnpm 規則の例外）。
+本プロジェクトは pnpm 運用（`pnpm-lock.yaml` を使用）。
 
 ```bash
-npm run dev      # Start development server (localhost:4321)
-npm run build    # Build for production (outputs to ./dist)
-npm run preview  # Preview production build locally
+pnpm dev      # Start development server (localhost:4321)
+pnpm build    # Build for production (outputs to ./dist)
+pnpm preview  # Preview production build locally
 ```
 
 ## Deployment
@@ -18,11 +18,11 @@ Push to `master` branch triggers GitHub Actions workflow that builds and deploys
 
 ## Architecture
 
-This is an Astro 5.x static site with Tailwind CSS 4.x for styling.
+This is an Astro 7.x static site with Tailwind CSS 4.x for styling.
 
 ### Content Collections
 
-Two content collections defined in `src/content/config.ts`:
+Two content collections defined in `src/content.config.ts`:
 
 - **blog**: Markdown posts with frontmatter: `title`, `description`, `pubDate`, `tags[]`, `draft`
 - **projects**: Markdown entries with frontmatter: `title`, `description`, `url?`, `github?`, `tech[]`
@@ -37,6 +37,7 @@ Content files live in `src/content/blog/` and `src/content/projects/`.
 ### Routing
 
 - `/` - Home page with hero, recent posts, featured projects
+- `/en/portfolio` - English-language resume / portfolio page
 - `/blog` - Blog listing
 - `/blog/[slug]` - Individual blog posts (dynamic route from collection)
 - `/projects` - Projects listing
