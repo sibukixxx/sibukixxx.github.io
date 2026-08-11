@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import ProjectCard from '../ProjectCard.astro';
+import { getCollection } from 'astro:content';
+import { getLocale, t } from '../../i18n/utils';
+
+const locale = getLocale(Astro.currentLocale);
+
+const allProjects = await getCollection('projects');
+---
+
+<Base title={`${t(locale, 'projects.title')} | sibukixxx`} description={t(locale, 'projects.description')}>
+  <Header />
+
+  <main class="py-12">
+    <div class="mx-auto max-w-5xl px-4">
+      <header class="mb-12 text-center">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+          {t(locale, 'projects.title')}
+        </h1>
+        <p class="text-lg text-gray-600 dark:text-gray-400">
+          {t(locale, 'projects.description')}
+        </p>
+      </header>
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {allProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            url={project.data.url}
+            github={project.data.github}
+            tech={project.data.tech}
+          />
+        ))}
+      </div>
+
+      {allProjects.length === 0 && (
+        <div class="rounded-xl border border-gray-200 bg-white p-12 text-center dark:border-gray-700 dark:bg-gray-800">
+          <p class="text-gray-500 dark:text-gray-400">
+            {t(locale, 'projects.empty')}
+          </p>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+</Base>

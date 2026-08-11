@@ -1,4 +1,6 @@
 ---
+import { getLocale, t } from '../i18n/utils';
+
 interface Heading {
   depth: number;
   slug: string;
@@ -10,13 +12,14 @@ interface Props {
 }
 
 const { headings } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
 
 const tocHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
 ---
 
 {tocHeadings.length > 0 && (
   <nav aria-labelledby="toc-heading" class="toc">
-    <h2 id="toc-heading" class="toc-title">目次</h2>
+    <h2 id="toc-heading" class="toc-title">{t(locale, 'toc.title')}</h2>
     <ol class="toc-list">
       {tocHeadings.map((heading) => (
         <li class:list={[heading.depth === 3 && 'toc-indent']}>

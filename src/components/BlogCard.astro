@@ -1,4 +1,5 @@
 ---
+import { getLocale, getDateLocale, getLocalizedPath } from '../i18n/utils';
 import { getTagUrl } from '../utils/tags';
 
 interface Props {
@@ -11,11 +12,13 @@ interface Props {
 
 const { title, description, pubDate, slug, tags = [] } = Astro.props;
 
-const formattedDate = pubDate.toLocaleDateString('ja-JP', {
+const locale = getLocale(Astro.currentLocale);
+const formattedDate = pubDate.toLocaleDateString(getDateLocale(locale), {
   year: 'numeric',
   month: 'short',
   day: 'numeric',
 });
+const href = getLocalizedPath(locale, `/blog/${slug}`);
 ---
 
 <article class="group rounded-xl border border-gray-200 bg-white p-6 transition-shadow hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
@@ -27,7 +30,6 @@ const formattedDate = pubDate.toLocaleDateString('ja-JP', {
           <a
             href={getTagUrl(tag)}
             class="rounded bg-primary-100 px-2 py-0.5 text-xs text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
-            onclick="event.stopPropagation();"
           >
             {tag}
           </a>
@@ -35,7 +37,7 @@ const formattedDate = pubDate.toLocaleDateString('ja-JP', {
       </div>
     )}
   </div>
-  <a href={`/blog/${slug}`} class="block">
+  <a href={href} class="block">
     <h3 class="mb-2 text-xl font-semibold text-gray-900 group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
       {title}
     </h3>

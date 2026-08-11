@@ -6,6 +6,7 @@ import TableOfContents from '../components/TableOfContents.astro';
 import ShareButtons from '../components/ShareButtons.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import ReadingProgress from '../components/ReadingProgress.astro';
+import { getLocale, getDateLocale } from '../i18n/utils';
 import { getTagUrl } from '../utils/tags';
 import type { CollectionEntry } from 'astro:content';
 
@@ -25,9 +26,10 @@ interface Props {
   relatedPosts?: CollectionEntry<'blog'>[];
 }
 
-const { title, description, pubDate, tags = [], headings = [], slug, relatedPosts = [] } = Astro.props;
+const { title, description, pubDate, tags = [], headings = [], relatedPosts = [] } = Astro.props;
 
-const formattedDate = pubDate.toLocaleDateString('ja-JP', {
+const locale = getLocale(Astro.currentLocale);
+const formattedDate = pubDate.toLocaleDateString(getDateLocale(locale), {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -64,12 +66,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         <slot />
       </div>
 
-      <!-- Share Buttons -->
       <div class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700">
         <ShareButtons title={title} url={canonicalUrl} />
       </div>
 
-      <!-- Related Posts -->
       <RelatedPosts posts={relatedPosts} />
     </article>
   </main>
