@@ -1,8 +1,8 @@
 ---
 title: 'Next.jsではなくPreact SPAを選ぶケース'
-description: '管理画面や社内ツールにNext.jsは本当に必要か。Preact + TanStack Router + Signals + Viteという古典的なSPA構成を選ぶ理由と、AIコーディング時代における「制約の強いアーキテクチャ」の価値について考える。'
+description: 'SSRもSEOも必要ない管理画面に、Next.jsは本当に必要か。Preact + TanStack Router + Signals + Vite という古典的なSPA構成を選ぶ理由と、AIコーディング時代におけるフレームワーク選定の新しい評価軸について考える。'
 pubDate: 2026-08-09
-tags: ['Frontend', 'Preact', 'Next.js', 'Architecture', 'AI Coding']
+tags: ['Preact', 'Next.js', 'SPA', 'Architecture', 'AI Coding']
 draft: false
 ---
 
@@ -10,7 +10,7 @@ draft: false
 
 Next.jsが悪いわけではない。むしろ非常に強力だ。SSR、SEO、ルーティング、Server Components、API、認証との統合など、Webアプリケーションを作るために必要なものが一通り揃っている。
 
-ただ、考えてみると少し奇妙でもある。管理画面を作りたいだけなのに、本当にそこまで必要なのか。
+ただ、考えてみると少し奇妙でもある。**管理画面を作りたいだけなのに、本当にそこまで必要なのか。**
 
 最近自分が設計しているシステムでは、むしろ次のような構成を選ぶことが増えている。
 
@@ -45,13 +45,13 @@ Next.jsを採用する理由として、よく次のようなものが挙げら�
 
 どれも便利だ。問題は、**そのプロジェクトで本当にそれらを使うのか**ということだ。
 
-たとえば、自社用の管理システムを考える。ログインしたユーザーしかアクセスしない。Google検索に載せる必要もない。バックエンドAPIはすでにGoで存在する。フロントの仕事は、
+たとえば、自社用の管理システムを考える。ログインしたユーザーしかアクセスしない。Google検索に載せる必要もない。バックエンドAPIはすでにGoで存在する。
+
+フロントの仕事は、ほぼこれだけだ。
 
 ```text
 APIからデータ取得 → 表示 → ユーザー操作 → APIへ送信
 ```
-
-ほぼこれだけだ。
 
 この場合、SSRは必要ない。SEOも必要ない。Next.jsのServer ActionsもAPI Routesも必要ない。そうなるとNext.jsを採用する理由が急激に減ってくる。
 
@@ -87,7 +87,7 @@ APIからデータ取得 → 表示 → ユーザー操作 → APIへ送信
 
 これは最近かなり重要だと思っている。
 
-たとえば、次のような構造を作ることがある。
+たとえば、こういう構造を作ることがある。
 
 ```text
 Browser → Next.js → Go API → PostgreSQL
@@ -95,13 +95,13 @@ Browser → Next.js → Go API → PostgreSQL
 
 もちろんBFFとしてNext.jsを置く明確な理由があれば問題ない。しかし、理由もなくこの構造にすると、APIレイヤーが二重になる。
 
-だったら、
+だったら、こうでいいケースも多い。
 
 ```text
 Browser → Go API → PostgreSQL
 ```
 
-でいいケースも多い。FrontendはUIに集中する。BackendはBusiness Logicに集中する。かなり分かりやすい。
+FrontendはUIに集中する。BackendはBusiness Logicに集中する。かなり分かりやすい。
 
 ## Preactを選んでいる理由
 
@@ -117,13 +117,15 @@ Preact
 
 これくらいでいい。フロントエンド側に巨大なArchitectureを持たせたくない。
 
-Business LogicはGo側に置く。DBアクセスも当然Backend。認証もできるだけBackendとの境界を明確にする。Frontendは「APIの状態を人間が操作できる形に変換するもの」くらいの位置づけでいいと思っている。
+Business LogicはGo側に置く。DBアクセスも当然Backend。認証もできるだけBackendとの境界を明確にする。
+
+Frontendは「APIの状態を人間が操作できる形に変換するもの」くらいの位置づけでいいと思っている。
 
 ## TanStack Routerを使う
 
 SPAになると当然Routerが必要になる。そこでTanStack Routerを使う。
 
-自分が欲しいのは、単にURLを切り替えるRouterではない。たとえば、
+自分が欲しいのは、単にURLを切り替えるRouterではない。たとえば、こんな管理画面があったとする。
 
 ```text
 /dashboard
@@ -134,37 +136,33 @@ SPAになると当然Routerが必要になる。そこでTanStack Routerを使�
 /analytics
 ```
 
-という管理画面があったとする。ここで、
+ここで、次の関係を明示的にしておきたい。
 
 ```text
 URL → Route → Loader → Component
 ```
 
-という関係を明示的にしておきたい。
-
 Next.jsではディレクトリ構造によって多くのことが暗黙的に決定される。これは便利でもある。一方SPAでは、ある程度明示的に書くことで、**アプリケーション構造をコード上にはっきり残す**ことができる。
 
 AIにコードを書かせる場合にも、この明示性は意外と重要になる。
 
-## SignalsをGlobal State管理ツールとして使わない
+## SignalsはGlobal State管理ツールとして使わない
 
 Preact Signalsも使っている。ただし、何でもSignalsに入れるわけではない。ここはかなり重要だと思っている。
 
-たとえば、
+たとえば、次のようなUI stateには向いている。
 
 ```ts
 const sidebarOpen = signal(false)
 ```
 
-のようなUI stateには向いている。
-
 一方、案件一覧・売上データ・ユーザー情報・分析結果のようなServer Stateまで全部Signalsに入れ始めると、状態管理が再び巨大化する。
 
-基本的には、次のように分ける。
+基本的には、こう分ける。
 
 ```text
-Local UI State  → Signals
-Server State    → API / Query
+Local UI State → Signals
+Server State   → API / Query
 ```
 
 「Global Stateをどう管理するか」を考え続けるより、**そもそもGlobal Stateを作らない**方がシステムは単純になる。
@@ -175,7 +173,7 @@ Server State    → API / Query
 
 AIにコードを書かせる場合、Frameworkの機能が多ければ多いほど便利になるとは限らない。AIはコードを書くこと自体は非常に速い。問題になるのは、**どこに書くべきなのか**である。
 
-Next.jsでは同じ処理でも、
+Next.jsでは同じ処理でも、実行場所の候補が複数存在する。
 
 - Server Component
 - Client Component
@@ -184,16 +182,9 @@ Next.jsでは同じ処理でも、
 - Middleware
 - Browser
 
-など、実行場所の候補が複数存在する。人間でも設計を間違える。当然AIも間違える。
+人間でも設計を間違える。当然AIも間違える。
 
-一方、
-
-```text
-Preact = Browser
-Go     = Server
-```
-
-なら非常に分かりやすい。AIには、
+一方、`Preact = Browser`、`Go = Server` なら非常に分かりやすい。AIには、こうルールを渡せばいい。
 
 - Business LogicはGoに置く
 - PreactにはBusiness Logicを書かない
@@ -201,17 +192,15 @@ Go     = Server
 - API Client経由でアクセスする
 - SignalsはUI Stateだけに使う
 
-とルールを渡せばいい。
-
 AIが生成できるコード量が増えれば増えるほど、**自由度を減らすArchitectureの価値が上がる**と思っている。
 
 ## Frameworkの機能が多いことは必ずしもメリットではない
 
-以前は「できることが多いFramework = 優れたFramework」という感覚が強かった。しかしAIが実装を大量に生成するようになると、少し考え方が変わる。
+以前は「できることが多いFramework＝優れたFramework」という感覚が強かった。しかしAIが実装を大量に生成するようになると、少し考え方が変わる。
 
-重要なのはCapabilityではなくConstraintになる。つまり「何ができるか」より「どのようにしか書けないか」の方が重要になってくる。
+重要なのは **Capability** ではなく **Constraint** になる。つまり「何ができるか」より「どのようにしか書けないか」の方が重要になってくる。
 
-AIに自由に設計させると、コードベースは簡単に発散する。だから最初から、
+AIに自由に設計させると、コードベースは簡単に発散する。だから最初から、これくらいまで決めてしまう。
 
 ```text
 Frontend
@@ -228,38 +217,38 @@ Backend
 └─ handler
 ```
 
-くらいまで決めてしまう。AIにはその範囲内で実装させる。これはAI Codingにおける一種のHarnessだと思っている。
+AIにはその範囲内で実装させる。これはAI Codingにおける一種のHarnessだと思っている。
 
 ## Tailwindも同じ理由で使う
 
 Tailwindを使う理由も似ている。単純にCSSを書く量を減らしたいだけではない。
 
-AIに、
+AIに、こう指定できる。
 
 - Tailwindだけを使用する
 - 独自CSSを増やさない
 - Spacingは既存Scaleを使う
 - 共通UIはComponent化する
 
-と指定できる。するとAIが勝手に `styles.css` や `foo.module.css`、styled-components、inline styleなどを大量発生させることを防げる。これもConstraintである。
+するとAIが勝手に `styles.css`、`foo.module.css`、styled-components、inline style などを大量発生させることを防げる。これもConstraintである。
 
 ## Viteで十分なケースはかなり多い
 
-ビルドにはViteを使う。SPAなのでビルドすれば静的ファイルが生成される。あとはCDNやStatic Hostingに置けばいい。サーバーサイドレンダリングのRuntimeを持つ必要もない。
+ビルドにはViteを使う。SPAなのでビルドすれば静的ファイルが生成される。あとはCDNやStatic Hostingに置けばいい。サーバーサイドRenderingのRuntimeを持つ必要もない。
 
-つまりDeploymentも、
+つまりDeploymentも、これで終わる。
 
 ```text
 Preact → Vite Build → Static Files → CDN
 ```
 
-で終わる。BackendはBackendとしてGoをDeployする。この分離は運用上も分かりやすい。
+BackendはBackendとしてGoをDeploymentする。この分離は運用上も分かりやすい。
 
 ## ただし公開サイトまでSPAにする必要はない
 
 ここで重要なのは、**全部Preactにする必要はない**ということである。
 
-たとえば自分が作っているようなアフィリエイト運用システムなら、
+たとえば自分が作っているようなアフィリエイト運用システムなら、こうでいい。
 
 ```text
                 ┌─ Public Site
@@ -271,7 +260,7 @@ Go API ─────────┤
                     Preact SPA
 ```
 
-でいい。管理画面と公開サイトでは要求が違う。だったらTechnologyも分ければいい。
+管理画面と公開サイトでは要求が違う。だったらTechnologyも分ければいい。
 
 「このプロジェクトはNext.js」「このプロジェクトはPreact」という単位で考える必要もない。ページの役割ごとにArchitectureを分離する。こちらの方が自然だと思う。
 
@@ -294,7 +283,7 @@ Go API ─────────┤
 
 Preactを選ぶ理由を「Reactより軽いから」だけで説明すると、あまり本質的ではないと思う。
 
-自分がPreact SPAを選んでいる理由は、
+自分がPreact SPAを選んでいる理由は、次のためだ。
 
 - 不要なServer Renderingを持たない
 - FrontendとBackendの責務を分ける
@@ -303,13 +292,13 @@ Preactを選ぶ理由を「Reactより軽いから」だけで説明すると、
 - Deploymentを単純にする
 - AIが迷える選択肢を減らす
 
-ためだ。つまり、**機能を増やすためではなく、設計上の選択肢を減らすためにPreactを使っている**。
+つまり、**機能を増やすためではなく、設計上の選択肢を減らすためにPreactを使っている。**
 
 ## AI時代のFramework選定
 
 これからFramework選定の基準は少し変わっていくのではないかと思っている。
 
-これまではDeveloper Experience、Ecosystem、Performance、Featuresなどが主な評価軸だった。そこに今後は、**AIがArchitectureを誤解しにくいか**という評価軸が入ってくる。
+これまでは Developer Experience、Ecosystem、Performance、Features などが主な評価軸だった。そこに今後は、**AIがArchitectureを誤解しにくいか**という評価軸が入ってくる。
 
 AIは実装速度を劇的に上げる。だからこそ、人間の仕事は「コードを書く」ことから「AIが間違ったコードを書きにくい構造を作る」ことへ少しずつ移っていく。
 
@@ -323,6 +312,6 @@ Go API
 
 という、一見すると地味な構成はかなり面白い。
 
-Next.jsのような巨大なFrameworkを使わなければ高度なWebアプリケーションを作れないわけではない。場合によっては逆だ。必要なものだけを組み合わせた小さなArchitectureの方が、AI時代には長く保守できる。
+Next.jsのような巨大なFrameworkを使わなければ高度なWebアプリケーションを作れないわけではない。場合によっては逆だ。**必要なものだけを組み合わせた小さなArchitectureの方が、AI時代には長く保守できる。**
 
 最近はそんなことを考えている。
