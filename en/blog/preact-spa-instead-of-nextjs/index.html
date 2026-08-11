@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v7.2.0"><!-- Primary Meta Tags --><title>Next.jsではなくPreact SPAを選ぶケース | sibukixxx</title><meta name="title" content="Next.jsではなくPreact SPAを選ぶケース | sibukixxx"><meta name="description" content="管理画面や社内ツールにNext.jsは本当に必要か。Preact + TanStack Router + Signals + Viteという古典的なSPA構成を選ぶ理由と、AIコーディング時代におけるConstraint駆動のFramework選定について。"><link rel="canonical" href="https://sibukixxx.github.io/en/blog/preact-spa-instead-of-nextjs/"><link rel="alternate" type="application/rss+xml" title="sibukixxx Blog" href="/rss.xml"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://sibukixxx.github.io/en/blog/preact-spa-instead-of-nextjs/"><meta property="og:title" content="Next.jsではなくPreact SPAを選ぶケース | sibukixxx"><meta property="og:description" content="管理画面や社内ツールにNext.jsは本当に必要か。Preact + TanStack Router + Signals + Viteという古典的なSPA構成を選ぶ理由と、AIコーディング時代におけるConstraint駆動のFramework選定について。"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://sibukixxx.github.io/en/blog/preact-spa-instead-of-nextjs/"><meta property="twitter:title" content="Next.jsではなくPreact SPAを選ぶケース | sibukixxx"><meta property="twitter:description" content="管理画面や社内ツールにNext.jsは本当に必要か。Preact + TanStack Router + Signals + Viteという古典的なSPA構成を選ぶ理由と、AIコーディング時代におけるConstraint駆動のFramework選定について。"><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script><!-- Fonts --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><!-- Theme initialization (prevent flash) --><script>
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    </script><link rel="stylesheet" href="/_astro/Base.BhvmWram.css"></head><body class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100"><div id="reading-progress" class="fixed left-0 top-0 z-50 h-1 w-0 bg-gradient-to-r from-primary-500 to-primary-600 transition-[width] duration-150" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="読書進捗"></div><script type="module">var e=document.getElementById(`reading-progress`);function t(){if(!e)return;let t=window.scrollY,n=document.documentElement.scrollHeight-window.innerHeight,r=n>0?t/n*100:0;e.style.width=`${Math.min(100,Math.max(0,r))}%`,e.setAttribute(`aria-valuenow`,String(Math.round(r)))}var n=!1;window.addEventListener(`scroll`,()=>{n||=(window.requestAnimationFrame(()=>{t(),n=!1}),!0)}),t();</script><header class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-700 dark:bg-gray-900/80"><nav class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4"><a href="/en/" class="text-xl font-bold text-primary-600 dark:text-primary-400">sibukixxx</a><div class="flex items-center gap-4"><ul class="flex items-center gap-6"><li><a href="/en/" class="text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 text-gray-600 dark:text-gray-400">Home</a></li><li><a href="/en/blog" class="text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 text-primary-600 dark:text-primary-400">Blog</a></li><li><a href="/en/projects" class="text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 text-gray-600 dark:text-gray-400">Projects</a></li><li><a href="/about" class="text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 text-gray-600 dark:text-gray-400">About</a></li><li><a href="/contact" class="text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 text-gray-600 dark:text-gray-400">Contact</a></li></ul><div class="flex items-center gap-2"><button id="theme-toggle" type="button" class="rounded-lg p-2 text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700" aria-label="テーマを切り替え"><!-- Sun icon (shown in dark mode) --><svg id="theme-toggle-light-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg><!-- Moon icon (shown in light mode) --><svg id="theme-toggle-dark-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg></button><script type="module">var e=document.getElementById(`theme-toggle`),t=document.getElementById(`theme-toggle-dark-icon`),n=document.getElementById(`theme-toggle-light-icon`);function r(){document.documentElement.classList.contains(`dark`)?(n?.classList.remove(`hidden`),t?.classList.add(`hidden`)):(n?.classList.add(`hidden`),t?.classList.remove(`hidden`))}r(),e?.addEventListener(`click`,()=>{document.documentElement.classList.toggle(`dark`),document.documentElement.classList.contains(`dark`)?localStorage.setItem(`theme`,`dark`):localStorage.setItem(`theme`,`light`),r()});</script><div class="relative"><button id="lang-toggle" class="flex items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-gray-200" aria-label="Change language" aria-expanded="false">English<svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button><ul id="lang-menu" class="absolute right-0 top-full mt-1 hidden min-w-[120px] rounded-md border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-800"><li><a href="/blog/preact-spa-instead-of-nextjs/" class="block px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">日本語</a></li><li><a href="/en/blog/preact-spa-instead-of-nextjs/" class="block px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 font-semibold text-primary-600 dark:text-primary-400">English</a></li><li><a href="/es/blog/preact-spa-instead-of-nextjs/" class="block px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">Español</a></li><li><a href="/hi/blog/preact-spa-instead-of-nextjs/" class="block px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">हिन्दी</a></li></ul></div></div></div></nav></header><script type="module">var e=document.getElementById(`lang-toggle`),t=document.getElementById(`lang-menu`);e&&t&&(e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)===`true`;e.setAttribute(`aria-expanded`,String(!n)),t.classList.toggle(`hidden`)}),document.addEventListener(`click`,n=>{!e.contains(n.target)&&!t.contains(n.target)&&(e.setAttribute(`aria-expanded`,`false`),t.classList.add(`hidden`))}));</script><main class="mx-auto max-w-3xl px-4 py-12"><article><header class="mb-8"><h1 class="mb-4 text-4xl font-bold tracking-tight">Next.jsではなくPreact SPAを選ぶケース</h1><div class="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400"><time datetime="2026-08-09T00:00:00.000Z">August 9, 2026</time><div class="flex flex-wrap gap-2"><a href="/tags/Preact" class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800">Preact</a><a href="/tags/Next.js" class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800">Next.js</a><a href="/tags/Frontend" class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800">Frontend</a><a href="/tags/Architecture" class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800">Architecture</a><a href="/tags/AI%20Coding" class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800">AI Coding</a></div></div></header><nav aria-labelledby="toc-heading" class="toc"><h2 id="toc-heading" class="toc-title">Table of Contents</h2><ol class="toc-list"><li><a href="#nextjsを使う理由と使わない理由は別">Next.jsを使う理由と、使わない理由は別</a></li><li><a href="#spaが向いているシステム">SPAが向いているシステム</a></li><li><a href="#backendが別にあるならnextjsをbackend化しない">Backendが別にあるならNext.jsをBackend化しない</a></li><li><a href="#preactを選んでいる理由">Preactを選んでいる理由</a></li><li><a href="#tanstack-routerを使う">TanStack Routerを使う</a></li><li><a href="#signalsはglobal-state管理ツールとして使わない">SignalsはGlobal State管理ツールとして使わない</a></li><li><a href="#aiコーディング時代には単純なarchitectureが強い">AIコーディング時代には「単純なArchitecture」が強い</a></li><li><a href="#frameworkの機能が多いことは必ずしもメリットではない">Frameworkの機能が多いことは必ずしもメリットではない</a></li><li><a href="#tailwindも同じ理由で使う">Tailwindも同じ理由で使う</a></li><li><a href="#viteで十分なケースはかなり多い">Viteで十分なケースはかなり多い</a></li><li><a href="#ただし公開サイトまでspaにする必要はない">ただし公開サイトまでSPAにする必要はない</a></li><li><a href="#preact-spaを選ばないケース">Preact SPAを選ばないケース</a></li><li><a href="#結局軽いからpreactではない">結局「軽いからPreact」ではない</a></li><li><a href="#ai時代のframework選定">AI時代のFramework選定</a></li></ol></nav><div class="prose prose-lg prose-gray dark:prose-invert"><p>最近、新しいWebアプリを作るときに、必ずしもNext.jsを選ばなくなった。</p>
+<p>Next.jsが悪いわけではない。むしろ非常に強力だ。SSR、SEO、ルーティング、Server Components、API、認証との統合など、Webアプリケーションを作るために必要なものが一通り揃っている。</p>
+<p>ただ、考えてみると少し奇妙でもある。管理画面を作りたいだけなのに、本当にそこまで必要なのか。</p>
+<p>最近自分が設計しているシステムでは、むしろ次のような構成を選ぶことが増えている。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Backend</span></span>
+<span class="line"><span>  Go API</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Frontend</span></span>
+<span class="line"><span>  Preact</span></span>
+<span class="line"><span>  TypeScript</span></span>
+<span class="line"><span>  Tailwind CSS</span></span>
+<span class="line"><span>  TanStack Router</span></span>
+<span class="line"><span>  Preact Signals</span></span>
+<span class="line"><span>  Vite</span></span></code></pre>
+<p>つまり、かなり古典的なSPAである。なぜ今になってSPAなのか。</p>
+<h2 id="nextjsを使う理由と使わない理由は別">Next.jsを使う理由と、使わない理由は別</h2>
+<p>Next.jsを採用する理由として、よく次のようなものが挙げられる。</p>
+<ul>
+<li>SEO</li>
+<li>SSR</li>
+<li>Server Components</li>
+<li>ファイルベースルーティング</li>
+<li>API Routes</li>
+<li>認証</li>
+<li>Middleware</li>
+<li>Image Optimization</li>
+<li>サーバーとフロントをまとめて管理できる</li>
+</ul>
+<p>どれも便利だ。問題は、<strong>そのプロジェクトで本当にそれらを使うのか</strong>ということだ。</p>
+<p>たとえば、自社用の管理システムを考える。ログインしたユーザーしかアクセスしない。Google検索に載せる必要もない。バックエンドAPIはすでにGoで存在する。</p>
+<p>フロントの仕事は、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>APIからデータ取得</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>表示</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>ユーザー操作</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>APIへ送信</span></span></code></pre>
+<p>ほぼこれだけだ。</p>
+<p>この場合、SSRは必要ない。SEOも必要ない。Next.jsのServer ActionsもAPI Routesも必要ない。そうなるとNext.jsを採用する理由が急激に減ってくる。</p>
+<h2 id="spaが向いているシステム">SPAが向いているシステム</h2>
+<p>自分の中では、現在はだいたい次の基準で考えている。</p>
+<p><strong>Preact SPA</strong></p>
+<ul>
+<li>管理画面</li>
+<li>社内ツール</li>
+<li>業務システム</li>
+<li>ダッシュボード</li>
+<li>AIエージェント操作画面</li>
+<li>SaaSのログイン後画面</li>
+<li>PoC</li>
+<li>小規模サービス</li>
+</ul>
+<p><strong>Next.js</strong></p>
+<ul>
+<li>メディア</li>
+<li>EC</li>
+<li>コンテンツサイト</li>
+<li>SEO流入が重要なサービス</li>
+<li>公開ページ主体のSaaS</li>
+<li>サーバーレンダリング自体に価値があるサービス</li>
+</ul>
+<p>ポイントは、<strong>SPA vs SSRという技術論から考えないこと</strong>だと思っている。</p>
+<p>まず「このページは誰がどうやって訪れるのか？」から考える。Google検索から来るならSSRやSSGには大きな意味がある。ログイン画面からしか入れないのであれば、その価値はかなり小さくなる。</p>
+<h2 id="backendが別にあるならnextjsをbackend化しない">Backendが別にあるならNext.jsをBackend化しない</h2>
+<p>これは最近かなり重要だと思っている。</p>
+<p>たとえば、こういう構造を作ることがある。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Browser</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Next.js</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Go API</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>PostgreSQL</span></span></code></pre>
+<p>もちろんBFFとしてNext.jsを置く明確な理由があれば問題ない。しかし、理由もなくこの構造にすると、APIレイヤーが二重になる。</p>
+<p>だったら、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Browser</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Go API</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>PostgreSQL</span></span></code></pre>
+<p>でいいケースも多い。</p>
+<p>FrontendはUIに集中する。BackendはBusiness Logicに集中する。かなり分かりやすい。</p>
+<h2 id="preactを選んでいる理由">Preactを選んでいる理由</h2>
+<p>そこでPreactを使っている。理由は単純に「Reactより軽いから」だけではない。むしろ自分が重要だと思っているのは、<strong>フロントエンドを小さなUIランタイムとして扱えること</strong>だ。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Preact</span></span>
+<span class="line"><span>├─ Component</span></span>
+<span class="line"><span>├─ Router</span></span>
+<span class="line"><span>├─ State</span></span>
+<span class="line"><span>└─ API Client</span></span></code></pre>
+<p>これくらいでいい。フロントエンド側に巨大なArchitectureを持たせたくない。</p>
+<p>Business LogicはGo側に置く。DBアクセスも当然Backend。認証もできるだけBackendとの境界を明確にする。</p>
+<p>Frontendは「APIの状態を人間が操作できる形に変換するもの」くらいの位置づけでいいと思っている。</p>
+<h2 id="tanstack-routerを使う">TanStack Routerを使う</h2>
+<p>SPAになると当然Routerが必要になる。そこでTanStack Routerを使う。</p>
+<p>自分が欲しいのは、単にURLを切り替えるRouterではない。たとえば、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>/dashboard</span></span>
+<span class="line"><span>/offers</span></span>
+<span class="line"><span>/categories</span></span>
+<span class="line"><span>/contents</span></span>
+<span class="line"><span>/sns-accounts</span></span>
+<span class="line"><span>/analytics</span></span></code></pre>
+<p>という管理画面があったとする。ここで、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>URL</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Route</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Loader</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Component</span></span></code></pre>
+<p>という関係を明示的にしておきたい。</p>
+<p>Next.jsではディレクトリ構造によって多くのことが暗黙的に決定される。これは便利でもある。一方SPAでは、ある程度明示的に書くことで、<strong>アプリケーション構造をコード上にはっきり残す</strong>ことができる。</p>
+<p>AIにコードを書かせる場合にも、この明示性は意外と重要になる。</p>
+<h2 id="signalsはglobal-state管理ツールとして使わない">SignalsはGlobal State管理ツールとして使わない</h2>
+<p>Preact Signalsも使っている。ただし、何でもSignalsに入れるわけではない。ここはかなり重要だと思っている。</p>
+<p>たとえば、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="ts"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> sidebarOpen</span><span style="color:#F97583"> =</span><span style="color:#B392F0"> signal</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">false</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<p>のようなUI stateには向いている。</p>
+<p>一方、案件一覧、売上データ、ユーザー情報、分析結果のようなServer Stateまで全部Signalsに入れ始めると、状態管理が再び巨大化する。</p>
+<p>基本的には、こう分ける。</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Local UI State → Signals</span></span>
+<span class="line"><span>Server State   → API / Query</span></span></code></pre>
+<p>「Global Stateをどう管理するか」を考え続けるより、<strong>そもそもGlobal Stateを作らない</strong>方がシステムは単純になる。</p>
+<h2 id="aiコーディング時代には単純なarchitectureが強い">AIコーディング時代には「単純なArchitecture」が強い</h2>
+<p>そして最近、この構成を選ぶ最大の理由がこれだ。</p>
+<p>AIにコードを書かせる場合、Frameworkの機能が多ければ多いほど便利になるとは限らない。AIはコードを書くこと自体は非常に速い。問題になるのは、<strong>どこに書くべきなのか</strong>である。</p>
+<p>Next.jsでは同じ処理でも、</p>
+<ul>
+<li>Server Component</li>
+<li>Client Component</li>
+<li>Server Action</li>
+<li>Route Handler</li>
+<li>Middleware</li>
+<li>Browser</li>
+</ul>
+<p>など、実行場所の候補が複数存在する。人間でも設計を間違える。当然AIも間違える。</p>
+<p>一方、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Preact = Browser</span></span>
+<span class="line"><span>Go     = Server</span></span></code></pre>
+<p>なら非常に分かりやすい。</p>
+<p>AIには、こうルールを渡せばいい。</p>
+<ul>
+<li>Business LogicはGoに置く</li>
+<li>PreactにはBusiness Logicを書かない</li>
+<li>Componentから直接fetchしない</li>
+<li>API Client経由でアクセスする</li>
+<li>SignalsはUI Stateだけに使う</li>
+</ul>
+<p>AIが生成できるコード量が増えれば増えるほど、<strong>自由度を減らすArchitectureの価値が上がる</strong>と思っている。</p>
+<h2 id="frameworkの機能が多いことは必ずしもメリットではない">Frameworkの機能が多いことは必ずしもメリットではない</h2>
+<p>以前は「できることが多いFramework = 優れたFramework」という感覚が強かった。</p>
+<p>しかしAIが実装を大量に生成するようになると、少し考え方が変わる。重要なのは <strong>Capability</strong> ではなく <strong>Constraint</strong> になる。つまり「何ができるか」より「どうしか書けないか」の方が重要になってくる。</p>
+<p>AIに自由に設計させると、コードベースは簡単に発散する。だから最初から、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Frontend</span></span>
+<span class="line"><span>├─ routes</span></span>
+<span class="line"><span>├─ components</span></span>
+<span class="line"><span>├─ features</span></span>
+<span class="line"><span>├─ api</span></span>
+<span class="line"><span>└─ signals</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Backend</span></span>
+<span class="line"><span>├─ domain</span></span>
+<span class="line"><span>├─ usecase</span></span>
+<span class="line"><span>├─ repository</span></span>
+<span class="line"><span>└─ handler</span></span></code></pre>
+<p>くらいまで決めてしまう。AIにはその範囲内で実装させる。</p>
+<p>これはAI Codingにおける一種のHarnessだと思っている。</p>
+<h2 id="tailwindも同じ理由で使う">Tailwindも同じ理由で使う</h2>
+<p>Tailwindを使う理由も似ている。単純にCSSを書く量を減らしたいだけではない。</p>
+<p>AIに、</p>
+<ul>
+<li>Tailwindだけを使用する</li>
+<li>独自CSSを増やさない</li>
+<li>Spacingは既存Scaleを使う</li>
+<li>共通UIはComponent化する</li>
+</ul>
+<p>と指定できる。するとAIが勝手に <code>styles.css</code>、<code>foo.module.css</code>、styled-components、inline styleなどを大量発生させることを防げる。</p>
+<p>これもConstraintである。</p>
+<h2 id="viteで十分なケースはかなり多い">Viteで十分なケースはかなり多い</h2>
+<p>ビルドにはViteを使う。SPAなのでビルドすれば静的ファイルが生成される。あとはCDNやStatic Hostingに置けばいい。サーバーサイドRenderingのRuntimeを持つ必要もない。</p>
+<p>つまりDeploymentも、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Preact</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Vite Build</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>Static Files</span></span>
+<span class="line"><span>↓</span></span>
+<span class="line"><span>CDN</span></span></code></pre>
+<p>で終わる。</p>
+<p>BackendはBackendとしてGoをDeploymentする。この分離は運用上も分かりやすい。</p>
+<h2 id="ただし公開サイトまでspaにする必要はない">ただし公開サイトまでSPAにする必要はない</h2>
+<p>ここで重要なのは、<strong>全部Preactにする必要はない</strong>ということである。</p>
+<p>たとえば自分が作っているようなアフィリエイト運用システムなら、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>                ┌─ Public Site</span></span>
+<span class="line"><span>                │   SEO / SSG / SSR</span></span>
+<span class="line"><span>                │</span></span>
+<span class="line"><span>Go API ─────────┤</span></span>
+<span class="line"><span>                │</span></span>
+<span class="line"><span>                └─ Admin</span></span>
+<span class="line"><span>                    Preact SPA</span></span></code></pre>
+<p>でいい。</p>
+<p>管理画面と公開サイトでは要求が違う。だったらTechnologyも分ければいい。</p>
+<p>「このプロジェクトはNext.js」「このプロジェクトはPreact」という単位で考える必要もない。ページの役割ごとにArchitectureを分離する。こちらの方が自然だと思う。</p>
+<h2 id="preact-spaを選ばないケース">Preact SPAを選ばないケース</h2>
+<p>逆に、最初から次の要求が分かっているなら、自分ならNext.jsなどSSR/SSGを得意とするFrameworkを検討する。</p>
+<ul>
+<li>検索流入が事業の中心</li>
+<li>大量の公開ページが存在する</li>
+<li>OGPやMetadataが重要</li>
+<li>コンテンツ配信が中心</li>
+<li>SSRそのものにUX上の価値がある</li>
+<li>公開サイトとApplicationが密接</li>
+</ul>
+<p>特にSEOについては注意が必要だ。</p>
+<p>最初に「SEOはいらないからSPAでいい」と言って作り始め、半年後に「やっぱり検索流入を取りたい」となるとArchitecture変更のコストが発生する。</p>
+<p>だからSPAを採用するときには、<strong>将来どこが公開領域になるのか</strong>だけは最初に考えておいた方がいい。自分なら公開領域を別Applicationとして切れる境界を作っておく。</p>
+<h2 id="結局軽いからpreactではない">結局「軽いからPreact」ではない</h2>
+<p>Preactを選ぶ理由を「Reactより軽いから」だけで説明すると、あまり本質的ではないと思う。</p>
+<p>自分がPreact SPAを選んでいる理由は、</p>
+<ul>
+<li>不要なServer Renderingを持たない</li>
+<li>FrontendとBackendの責務を分ける</li>
+<li>Applicationの実行場所を明確にする</li>
+<li>状態管理を増やさない</li>
+<li>Deploymentを単純にする</li>
+<li>AIが迷える選択肢を減らす</li>
+</ul>
+<p>ためだ。</p>
+<p>つまり、<strong>機能を増やすためではなく、設計上の選択肢を減らすためにPreactを使っている。</strong></p>
+<h2 id="ai時代のframework選定">AI時代のFramework選定</h2>
+<p>これからFramework選定の基準は少し変わっていくのではないかと思っている。</p>
+<p>これまでは、Developer Experience、Ecosystem、Performance、Featuresなどが主な評価軸だった。そこに今後は、<strong>AIがArchitectureを誤解しにくいか</strong>という評価軸が入ってくる。</p>
+<p>AIは実装速度を劇的に上げる。だからこそ、人間の仕事は「コードを書く」ことから「AIが間違ったコードを書きにくい構造を作る」ことへ少しずつ移っていく。</p>
+<p>その観点から見ると、</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>Preact</span></span>
+<span class="line"><span>TypeScript</span></span>
+<span class="line"><span>Tailwind</span></span>
+<span class="line"><span>TanStack Router</span></span>
+<span class="line"><span>Signals</span></span>
+<span class="line"><span>Vite</span></span>
+<span class="line"><span>+</span></span>
+<span class="line"><span>Go API</span></span></code></pre>
+<p>という、一見すると地味な構成はかなり面白い。</p>
+<p>Next.jsのような巨大なFrameworkを使わなければ高度なWebアプリケーションを作れないわけではない。場合によっては逆だ。</p>
+<p>必要なものだけを組み合わせた小さなArchitectureの方が、AI時代には長く保守できる。最近はそんなことを考えている。</p></div><div class="mt-12 border-t border-gray-200 pt-8 dark:border-gray-700"><div class="flex items-center gap-3"><span class="text-sm font-medium text-gray-600 dark:text-gray-400">Share:</span><div class="flex gap-2"><!-- X (Twitter) --><a href="https://twitter.com/intent/tweet?text=Next.js%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%8FPreact%20SPA%E3%82%92%E9%81%B8%E3%81%B6%E3%82%B1%E3%83%BC%E3%82%B9&amp;url=https%3A%2F%2Fsibukixxx.github.io%2Fen%2Fblog%2Fpreact-spa-instead-of-nextjs%2F" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600" aria-label="X (Twitter) でシェア"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><!-- Hatena Bookmark --><a href="https://b.hatena.ne.jp/add?url=https%3A%2F%2Fsibukixxx.github.io%2Fen%2Fblog%2Fpreact-spa-instead-of-nextjs%2F" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600" aria-label="はてなブックマークに追加"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M20.47 21.2c-.6.6-1.28.8-2.33.8H5.87c-1.05 0-1.74-.2-2.33-.8-.6-.6-.8-1.28-.8-2.33V5.13c0-1.05.2-1.74.8-2.33.6-.6 1.28-.8 2.33-.8h12.27c1.05 0 1.74.2 2.33.8.6.6.8 1.28.8 2.33v13.73c0 1.05-.2 1.74-.8 2.33zM12.87 15.52c.87 0 1.57.7 1.57 1.57s-.7 1.57-1.57 1.57-1.57-.7-1.57-1.57.7-1.57 1.57-1.57zm0-10.25c2.46 0 3.93 1.57 3.93 3.66 0 1.18-.52 2.13-1.48 2.75-.78.52-1.05.83-1.05 1.57v.78h-2.8v-1.13c0-1.22.52-1.92 1.57-2.57.7-.44.97-.78.97-1.4 0-.74-.52-1.22-1.18-1.22-.78 0-1.22.57-1.31 1.35H8.98c.17-2.18 1.57-3.8 3.89-3.8z"></path></svg></a><!-- LinkedIn --><a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fsibukixxx.github.io%2Fen%2Fblog%2Fpreact-spa-instead-of-nextjs%2F" target="_blank" rel="noopener noreferrer" class="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600" aria-label="LinkedIn でシェア"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg></a><!-- Copy Link --><button type="button" class="copy-link-btn flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600" aria-label="リンクをコピー" data-url="https://sibukixxx.github.io/en/blog/preact-spa-instead-of-nextjs/"><svg class="copy-icon h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><svg class="check-icon hidden h-5 w-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></button></div></div><script type="module">document.querySelectorAll(`.copy-link-btn`).forEach(e=>{e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-url`);if(t)try{await navigator.clipboard.writeText(t);let n=e.querySelector(`.copy-icon`),r=e.querySelector(`.check-icon`);n?.classList.add(`hidden`),r?.classList.remove(`hidden`),setTimeout(()=>{n?.classList.remove(`hidden`),r?.classList.add(`hidden`)},2e3)}catch(e){console.error(`Failed to copy:`,e)}})});</script></div></article></main><footer class="border-t border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900"><div class="mx-auto max-w-5xl px-4 py-8"><div class="flex flex-col items-center justify-between gap-4 sm:flex-row"><p class="text-sm text-gray-600 dark:text-gray-400">© 2026 sibukixxx. All Rights Reserved.</p><div class="flex items-center gap-4"><a href="https://github.com/sibukixxx" target="_blank" rel="noopener noreferrer" class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" aria-label="GitHub"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg></a><a href="https://twitter.com/sibukixxx" target="_blank" rel="noopener noreferrer" class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" aria-label="Twitter"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a><a href="/rss.xml" class="text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" aria-label="RSS Feed"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20C5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27V4.44m0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93V10.1z"></path></svg></a></div></div><p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-500">The content of this site may be used for AI training.</p><p class="mt-2 text-center text-xs text-gray-400 dark:text-gray-600">This site uses Google Analytics. See <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-600 dark:hover:text-gray-400">Google&#39;s Privacy Policy</a> for details.</p></div></footer></body></html>
