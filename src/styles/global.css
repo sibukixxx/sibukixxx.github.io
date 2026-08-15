@@ -41,6 +41,183 @@ body {
   @apply font-mono text-sm;
 }
 
+/* Quiet, long-form Markdown reader */
+main:has(> article > .prose) {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 48px 32px 96px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+}
+
+main > article > header h1 {
+  margin: 0 0 0.8em;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+main > article > .prose {
+  max-width: none;
+  color: #374151;
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+.dark main > article > .prose {
+  color: #d8dbe2;
+}
+
+main > article > .prose p {
+  margin: 0 0 1.25em;
+}
+
+main > article > .prose h2 {
+  margin: 2em 0 0.7em;
+  color: #1f2937;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+main > article > .prose h3 {
+  margin: 1.8em 0 0.6em;
+  color: #1f2937;
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+main > article > .prose h4 {
+  margin: 1.6em 0 0.5em;
+  color: #1f2937;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.dark main > article > .prose :is(h2, h3, h4) {
+  color: #e5e7eb;
+}
+
+main > article > .prose pre {
+  margin: 1.25em 0 1.5em;
+  overflow-x: auto;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: #f6f7f8 !important;
+  padding: 14px 16px;
+  box-shadow: none;
+}
+
+.dark main > article > .prose pre {
+  border-color: #262a31;
+  background: #181b20 !important;
+}
+
+main > article > .prose pre code {
+  display: block;
+  padding: 0;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.65;
+  filter: saturate(0.7);
+}
+
+.dark main > article > .prose pre code {
+  color: #c9cdd5;
+}
+
+main > article > .prose :not(pre) > code {
+  border-radius: 4px;
+  background: rgba(17, 24, 39, 0.06);
+  padding: 0.15em 0.35em;
+  color: inherit;
+  font-size: 0.9em;
+}
+
+.dark main > article > .prose :not(pre) > code {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+main > article > .prose :is(ul, ol) {
+  margin: 0.8em 0 1.4em;
+  padding-left: 1.5em;
+}
+
+main > article > .prose ul {
+  list-style: disc;
+}
+
+main > article > .prose ol {
+  list-style: decimal;
+}
+
+main > article > .prose li {
+  margin: 0.35em 0;
+}
+
+main > article > .prose blockquote {
+  margin: 1.5em 0;
+  border-left: 3px solid #9ca3af;
+  padding: 0 0 0 1em;
+  color: #6b7280;
+}
+
+.dark main > article > .prose blockquote {
+  border-left-color: #3a3f48;
+  color: #aeb4bf;
+}
+
+main > article > .prose a {
+  color: #3f6f8f;
+  text-decoration: none;
+}
+
+main > article > .prose a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.dark main > article > .prose a {
+  color: #8bb3cc;
+}
+
+main > article > .prose table {
+  width: 100%;
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+main > article > .prose :is(th, td) {
+  border: 1px solid #dfe3e8;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.dark main > article > .prose :is(th, td) {
+  border-color: #2d323a;
+}
+
+@media (max-width: 640px) {
+  main:has(> article > .prose) {
+    padding: 24px 18px 64px;
+  }
+
+  main > article > header h1 {
+    font-size: 26px;
+  }
+
+  main > article > .prose {
+    font-size: 15px;
+  }
+}
+
 /* Table of Contents */
 .toc {
   @apply my-8 rounded-lg border border-gray-200 bg-gray-50 p-5 dark:border-gray-700 dark:bg-gray-800/50;
