@@ -10,9 +10,18 @@ interface Props {
 const { showLanguageSwitcher = true } = Astro.props;
 const locale = getLocale(Astro.currentLocale);
 
-const navItems = [
+interface NavItem {
+  path: string;
+  key?: string;
+  label?: string;
+  localized?: boolean;
+  activePath?: string;
+}
+
+const navItems: NavItem[] = [
   { path: '/', key: 'nav.home' },
   { path: '/blog', key: 'nav.blog' },
+  { path: '/en/oss', label: 'OSS Radar', localized: false, activePath: '/oss' },
   { path: '/projects', key: 'nav.projects' },
   { path: '/about', key: 'nav.about', localized: false },
   { path: '/contact', key: 'nav.contact', localized: false },
@@ -29,9 +38,10 @@ const basePath = stripLocalePrefix(currentPath);
     </a>
     <div class="flex items-center gap-4">
       <ul class="flex items-center gap-6">
-        {navItems.map(({ path, key, localized = true }) => {
+        {navItems.map(({ path, key, label, localized = true, activePath }) => {
           const href = localized ? getLocalizedPath(locale, path) : path;
-          const isActive = basePath === path || (path !== '/' && basePath.startsWith(path));
+          const matchPath = activePath ?? path;
+          const isActive = basePath === matchPath || (matchPath !== '/' && basePath.startsWith(matchPath));
           return (
             <li>
               <a
@@ -43,7 +53,7 @@ const basePath = stripLocalePrefix(currentPath);
                     : 'text-gray-600 dark:text-gray-400',
                 ]}
               >
-                {t(locale, key)}
+                {label ?? (key ? t(locale, key) : '')}
               </a>
             </li>
           );

@@ -24,9 +24,10 @@ interface Props {
   headings?: Heading[];
   slug?: string;
   relatedPosts?: CollectionEntry<'blog'>[];
+  linkTags?: boolean;
 }
 
-const { title, description, pubDate, tags = [], headings = [], relatedPosts = [] } = Astro.props;
+const { title, description, pubDate, tags = [], headings = [], relatedPosts = [], linkTags = true } = Astro.props;
 
 const locale = getLocale(Astro.currentLocale);
 const formattedDate = pubDate.toLocaleDateString(getDateLocale(locale), {
@@ -49,14 +50,18 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
           <time datetime={pubDate.toISOString()}>{formattedDate}</time>
           {tags.length > 0 && (
             <div class="flex flex-wrap gap-2">
-              {tags.map((tag) => (
-                <a
-                  href={getTagUrl(tag)}
-                  class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
-                >
-                  {tag}
-                </a>
-              ))}
+              {tags.map((tag) => linkTags ? (
+                  <a
+                    href={getTagUrl(tag)}
+                    class="rounded-full bg-primary-100 px-3 py-1 text-sm text-primary-700 transition-colors hover:bg-primary-200 dark:bg-primary-900 dark:text-primary-300 dark:hover:bg-primary-800"
+                  >
+                    {tag}
+                  </a>
+                ) : (
+                  <span class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                    {tag}
+                  </span>
+                ))}
             </div>
           )}
         </div>
