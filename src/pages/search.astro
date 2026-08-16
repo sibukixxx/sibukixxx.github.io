@@ -6,12 +6,14 @@ import { getCollection } from 'astro:content';
 
 const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).map((post) => ({
   title: post.data.title,
+  searchText: `${post.data.title} ${post.data.description} ${post.body}`.toLocaleLowerCase(),
   href: `/blog/${post.id}`,
   section: 'Blog',
 }));
 
 const ossPosts = (await getCollection('oss', ({ data }) => !data.draft)).map((post) => ({
   title: post.data.title,
+  searchText: `${post.data.title} ${post.data.description} ${post.body}`.toLocaleLowerCase(),
   href: `/en/oss/${post.id}`,
   section: 'OSS Radar',
 }));
@@ -19,35 +21,46 @@ const ossPosts = (await getCollection('oss', ({ data }) => !data.draft)).map((po
 const items = [...blogPosts, ...ossPosts].sort((a, b) => a.title.localeCompare(b.title));
 ---
 
-<Base title="Search | sibukixxx" description="Search articles by title.">
+<Base title="Search | sibukixxx" description="Search Blog and OSS Radar articles.">
   <Header />
 
   <main class="mx-auto min-h-[60vh] max-w-3xl px-4 py-12 sm:py-16">
     <header class="mb-8">
       <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Search</h1>
-      <p class="mt-2 text-gray-600 dark:text-gray-400">Search blog and OSS Radar articles by title.</p>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">Search titles and content across Blog and OSS Radar.</p>
     </header>
 
-    <label for="title-search" class="sr-only">Search by title</label>
+    <label for="title-search" class="sr-only">Search articles</label>
     <input
       id="title-search"
       type="search"
-      placeholder="Type an article title..."
+      placeholder="Search articles..."
       autocomplete="off"
       autofocus
       class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500"
     />
 
-    <p id="result-count" class="mt-4 text-sm text-gray-500 dark:text-gray-500" aria-live="polite">
-      {items.length} articles
-    </p>
+    <div class="mt-5 flex flex-wrap gap-2" aria-label="Filter search results">
+      <button type="button" data-section-filter="All" aria-pressed="true" class="search-filter rounded-full bg-gray-900 px-3 py-1.5 text-sm text-white dark:bg-gray-100 dark:text-gray-900">
+        All <span class="opacity-60">{items.length}</span>
+      </button>
+      <button type="button" data-section-filter="Blog" aria-pressed="false" class="search-filter rounded-full bg-gray-200 px-3 py-1.5 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+        Blog <span class="opacity-60">{blogPosts.length}</span>
+      </button>
+      <button type="button" data-section-filter="OSS Radar" aria-pressed="false" class="search-filter rounded-full bg-gray-200 px-3 py-1.5 text-sm text-gray-700 dark:bg-gray-800 dark:text-gray-300">
+        OSS Radar <span class="opacity-60">{ossPosts.length}</span>
+      </button>
+    </div>
+
+    <p id="result-count" class="mt-4 text-sm text-gray-500 dark:text-gray-500" aria-live="polite">{items.length} articles across Blog and OSS Radar</p>
 
     <div id="search-results" class="mt-3 divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-700 dark:border-gray-700">
       {items.map((item) => (
         <a
           href={item.href}
           data-search-item
-          data-title={item.title.toLocaleLowerCase()}
+          data-search-text={item.searchText}
+          data-section={item.section}
           class="group flex items-center justify-between gap-4 py-5"
         >
           <span class="font-medium text-gray-900 transition-colors group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
@@ -71,23 +84,48 @@ const items = [...blogPosts, ...ossPosts].sort((a, b) => a.title.localeCompare(b
   const resultCount = document.querySelector<HTMLElement>('#result-count');
   const noResults = document.querySelector<HTMLElement>('#no-results');
   const items = Array.from(document.querySelectorAll<HTMLElement>('[data-search-item]'));
+  const filters = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-section-filter]'));
+  let activeSection = 'All';
 
   const filterItems = () => {
     const query = input?.value.trim().toLocaleLowerCase() ?? '';
     let visible = 0;
 
     for (const item of items) {
-      const matches = (item.dataset.title ?? '').includes(query);
+      const matchesQuery = (item.dataset.searchText ?? '').includes(query);
+      const matchesSection = activeSection === 'All' || item.dataset.section === activeSection;
+      const matches = matchesQuery && matchesSection;
       item.hidden = !matches;
       if (matches) visible += 1;
     }
 
-    if (resultCount) resultCount.textContent = `${visible} ${visible === 1 ? 'article' : 'articles'}`;
+    if (resultCount) {
+      const scope = activeSection === 'All' ? 'across Blog and OSS Radar' : `in ${activeSection}`;
+      resultCount.textContent = `${visible} ${visible === 1 ? 'article' : 'articles'} ${scope}`;
+    }
     noResults?.classList.toggle('hidden', visible !== 0);
   };
 
   const initialQuery = new URLSearchParams(window.location.search).get('q');
   if (input && initialQuery) input.value = initialQuery;
   input?.addEventListener('input', filterItems);
+  for (const filter of filters) {
+    filter.addEventListener('click', () => {
+      activeSection = filter.dataset.sectionFilter ?? 'All';
+      for (const button of filters) {
+        const active = button === filter;
+        button.setAttribute('aria-pressed', String(active));
+        button.classList.toggle('bg-gray-900', active);
+        button.classList.toggle('text-white', active);
+        button.classList.toggle('dark:bg-gray-100', active);
+        button.classList.toggle('dark:text-gray-900', active);
+        button.classList.toggle('bg-gray-200', !active);
+        button.classList.toggle('text-gray-700', !active);
+        button.classList.toggle('dark:bg-gray-800', !active);
+        button.classList.toggle('dark:text-gray-300', !active);
+      }
+      filterItems();
+    });
+  }
   filterItems();
 </script>
