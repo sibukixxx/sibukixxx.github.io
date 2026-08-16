@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const blogPosts = (await getCollection('blog', ({ data }) => !data.draft)).map((post) => ({
+  title: post.data.title,
+  href: `/blog/${post.id}`,
+  section: 'Blog',
+}));
+
+const ossPosts = (await getCollection('oss', ({ data }) => !data.draft)).map((post) => ({
+  title: post.data.title,
+  href: `/en/oss/${post.id}`,
+  section: 'OSS Radar',
+}));
+
+const items = [...blogPosts, ...ossPosts].sort((a, b) => a.title.localeCompare(b.title));
+---
+
+<Base title="Search | sibukixxx" description="Search articles by title.">
+  <Header />
+
+  <main class="mx-auto min-h-[60vh] max-w-3xl px-4 py-12 sm:py-16">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Search</h1>
+      <p class="mt-2 text-gray-600 dark:text-gray-400">Search blog and OSS Radar articles by title.</p>
+    </header>
+
+    <label for="title-search" class="sr-only">Search by title</label>
+    <input
+      id="title-search"
+      type="search"
+      placeholder="Type an article title..."
+      autocomplete="off"
+      autofocus
+      class="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:placeholder:text-gray-500"
+    />
+
+    <p id="result-count" class="mt-4 text-sm text-gray-500 dark:text-gray-500" aria-live="polite">
+      {items.length} articles
+    </p>
+
+    <div id="search-results" class="mt-3 divide-y divide-gray-200 border-y border-gray-200 dark:divide-gray-700 dark:border-gray-700">
+      {items.map((item) => (
+        <a
+          href={item.href}
+          data-search-item
+          data-title={item.title.toLocaleLowerCase()}
+          class="group flex items-center justify-between gap-4 py-5"
+        >
+          <span class="font-medium text-gray-900 transition-colors group-hover:text-primary-600 dark:text-gray-100 dark:group-hover:text-primary-400">
+            {item.title}
+          </span>
+          <span class="shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600">{item.section}</span>
+        </a>
+      ))}
+    </div>
+
+    <p id="no-results" class="mt-8 hidden text-center text-gray-500 dark:text-gray-400">
+      No matching titles.
+    </p>
+  </main>
+
+  <Footer />
+</Base>
+
+<script>
+  const input = document.querySelector<HTMLInputElement>('#title-search');
+  const resultCount = document.querySelector<HTMLElement>('#result-count');
+  const noResults = document.querySelector<HTMLElement>('#no-results');
+  const items = Array.from(document.querySelectorAll<HTMLElement>('[data-search-item]'));
+
+  const filterItems = () => {
+    const query = input?.value.trim().toLocaleLowerCase() ?? '';
+    let visible = 0;
+
+    for (const item of items) {
+      const matches = (item.dataset.title ?? '').includes(query);
+      item.hidden = !matches;
+      if (matches) visible += 1;
+    }
+
+    if (resultCount) resultCount.textContent = `${visible} ${visible === 1 ? 'article' : 'articles'}`;
+    noResults?.classList.toggle('hidden', visible !== 0);
+  };
+
+  const initialQuery = new URLSearchParams(window.location.search).get('q');
+  if (input && initialQuery) input.value = initialQuery;
+  input?.addEventListener('input', filterItems);
+  filterItems();
+</script>
