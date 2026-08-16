@@ -40,7 +40,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 <Base title={`${title} | sibukixxx`} description={description}>
   <ReadingProgress />
-  <Header />
+  <Header showLanguageSwitcher={false} />
   <main class="mx-auto max-w-3xl px-4 py-12">
     <article>
       <header class="mb-8">

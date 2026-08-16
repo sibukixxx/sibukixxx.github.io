@@ -3,6 +3,11 @@ import ThemeToggle from './ThemeToggle.astro';
 import { getLocale, t, getLocalizedPath, stripLocalePrefix } from '../i18n/utils';
 import { locales, localeLabels, type Locale } from '../i18n/translations';
 
+interface Props {
+  showLanguageSwitcher?: boolean;
+}
+
+const { showLanguageSwitcher = true } = Astro.props;
 const locale = getLocale(Astro.currentLocale);
 
 const navItems = [
@@ -46,7 +51,7 @@ const basePath = stripLocalePrefix(currentPath);
       </ul>
       <div class="flex items-center gap-2">
         <ThemeToggle />
-        <div class="relative">
+        {showLanguageSwitcher && <div class="relative">
           <button
             id="lang-toggle"
             class="flex items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs font-medium text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900 dark:border-gray-600 dark:text-gray-400 dark:hover:border-gray-500 dark:hover:text-gray-200"
@@ -78,7 +83,7 @@ const basePath = stripLocalePrefix(currentPath);
               </li>
             ))}
           </ul>
-        </div>
+        </div>}
       </div>
     </div>
   </nav>
