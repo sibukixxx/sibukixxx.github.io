@@ -38,3 +38,8 @@ Astro personal/public site with content collections.
 - Production build passes.
 - New content validates against its collection schema.
 - Publish/deploy actions occur only when explicitly requested.
+
+
+- When a repository's documentation and its existing code disagree, follow the conventions used in the existing code, and in your final reply point out each inconsistency you found between the documentation and the code.
+
+- 不要なセカンダリラベルや説明を避ける。レイアウトに説明させる。
