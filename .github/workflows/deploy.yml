@@ -1,8 +1,14 @@
 name: Deploy to GitHub Pages
 
+# Cost guard: only site/source updates should trigger Pages deployment.
 on:
   push:
     branches: [master]
+    paths-ignore:
+      - 'README.md'
+      - 'docs/**'
+      - '.github/workflows/**'
+      - '.github/dependabot.yml'
   workflow_dispatch:
 
 permissions:
